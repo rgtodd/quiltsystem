@@ -1,0 +1,84 @@
+﻿@model ColorPaletteModel
+@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+    .btnHue {
+        float: left;
+        width: 50px;
+        height: 25px;
+    }
+
+    .lblHue {
+        float: left;
+    }
+</style>
+<div class="clearfix">
+    @Html.ActionLink("Previous", "Index", new { webColor = Model.PreviousHue })
+    @Html.ActionLink("Next", "Index", new { webColor = Model.NextHue })
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">All: </span>
+    @for (int idx = 0; idx < Model.AllColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.AllColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.AllColors[idx].WebColor })
+    }
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">All: </span>
+    @for (int idx = 0; idx < Model.RelatedColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.RelatedColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.RelatedColors[idx].WebColor })
+    }
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">Lighter Saturated: </span>
+    @Html.ActionLink("*", "Index", new { webColor = Model.SelectedColor.WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.SelectedColor.WebColor })
+    @for (int idx = 0; idx < Model.LighterSaturatedColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.LighterSaturatedColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.LighterSaturatedColors[idx].WebColor, data_toggle = "tooltip", title = Model.LighterSaturatedColors[idx].Name + " (" + Model.LighterSaturatedColors[idx].Sku + ")" })
+    }
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">Lighter Desaturated: </span>
+    @Html.ActionLink("*", "Index", new { webColor = Model.SelectedColor.WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.SelectedColor.WebColor })
+    @for (int idx = 0; idx < Model.LighterDesaturatedColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.LighterDesaturatedColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.LighterDesaturatedColors[idx].WebColor })
+    }
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">Darker Saturated: </span>
+    @Html.ActionLink("*", "Index", new { webColor = Model.SelectedColor.WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.SelectedColor.WebColor })
+    @for (int idx = 0; idx < Model.DarkerSaturatedColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.DarkerSaturatedColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.DarkerSaturatedColors[idx].WebColor })
+    }
+</div>
+<div class="color-nav-list clearfix">
+    <span class="lblHue">Darker Desaturated: </span>
+    @Html.ActionLink("*", "Index", new { webColor = Model.SelectedColor.WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.SelectedColor.WebColor })
+    @for (int idx = 0; idx < Model.DarkerDesaturatedColors.GetLength(0); ++idx)
+    {
+        @Html.ActionLink("*", "Index", new { webColor = Model.DarkerDesaturatedColors[idx].WebColor }, new { @class = "color-nav-list__item", style = "background: " + Model.DarkerDesaturatedColors[idx].WebColor })
+    }
+</div>
+<table class="clearfix">
+    @for (int row = 0; row < Model.Palette.GetLength(0); ++row)
+    {
+        <tr>
+            @for (int column = 0; column < Model.Palette.GetLength(1); ++column)
+            {
+                var color = Model.Palette[row, column];
+                if (color != null)
+                {
+                    <td style="padding: 5px; background-color: @color.WebColor; font-size: 8pt; padding: 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                }
+                else
+                {
+                    <td>&nbsp;</td>
+                }
+            }
+        </tr>
+    }
+</table>

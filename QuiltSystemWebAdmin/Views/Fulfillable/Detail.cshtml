@@ -1,0 +1,296 @@
+﻿@model Fulfillable
+@{
+    ViewBag.Title = Model.FulfillableName;
+    var fulfillableItemHeading = ModelMetadata<FulfillableItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Fulfillables", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "Fulfillable", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.FulfillableId)
+    <div class="row">
+        <div class="col-12">
+            @if (Model.EnableCreateReturnRequest)
+            {
+                @Html.BootstrapActionLink("Create Return Request", "Edit", "ReturnRequest", new { fulfillableId = Model.FulfillableId })
+            }
+        </div>
+    </div>
+    @using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.FulfillableId)
+        @Html.BootstrapDisplay(m => m.FulfillableName)
+        if (Model.FulfillableReference != null)
+        {
+            var fulfillableReference = RichTodd.QuiltSystem.Service.Base.ParseReferenceValues.From(Model.FulfillableReference);
+            var fulfillableReferenceText = fulfillableReference.ToString();
+            @Html.BootstrapDisplay(m => fulfillableReferenceText, labelFormat: "Fulfillable Reference", link: Url.Action(fulfillableReference))
+        }
+        @Html.BootstrapDisplay(m => m.CreateDateTime)
+        @Html.BootstrapDisplay(m => m.FulfillableStatus)
+        @Html.BootstrapDisplay(m => m.StatusDateTime)
+        @Html.BootstrapDisplay(m => m.ShipToAddress)
+        @Html.BootstrapDisplay(m => m.UpdateDateTime)
+    }
+    @if (Is.Populated(Model.FulfillableItems))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Fulfillable Items <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target=".rowComponent">Show Components</button></h5>
+            <table class="card-body mb-0 @Css.DetailTable">
+                <thead class="@Css.DetailTableHead">
+                    <tr>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.FulfillableItemId)</th>
+                        <th>Preview</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.FulfillableItemReference)</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.RequestQuantity)</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.Description)</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.ConsumableReference)</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.CompleteQuantity)</th>
+                        <th>@fulfillableItemHeading.GetDisplayName(r => r.ReturnQuantity)</th>
+                    </tr>
+                </thead>
+                <tbody class="@Css.DetailTableBody">
+                    @foreach (var fulfillableItem in Model.FulfillableItems)
+                    {
+                        <tr class="@Css.DetailTableRow">
+                            <td>@Html.DisplayFor(m => fulfillableItem.FulfillableItemId)</td>
+                            <td><img src="@Url.ActionLink("FulfillableItem", "Thumbnail", new { id = fulfillableItem.FulfillableItemReference, size = 150 })" /></td>
+                            <td>@Html.DisplayFor(m => fulfillableItem.FulfillableItemReference)</td>
+                            <td>@Html.DisplayFor(m => fulfillableItem.RequestQuantity)</td>
+                            <td class="text-nowrap">@Html.DisplayForMultilineText(m => fulfillableItem.Description)</td>
+                            <td>@Html.DisplayFor(m => fulfillableItem.ConsumableReference)</td>
+                            <td>@Html.DisplayFor(m => fulfillableItem.CompleteQuantity)</td>
+                            <td>@Html.DisplayFor(m => fulfillableItem.ReturnQuantity)</td>
+                        </tr>
+                        <tr class="@Css.DetailTableRowSublistHeading">
+                            <td colspan="8" class="rowComponent collapse"><strong>Components</strong></td>
+                        </tr>
+                        @foreach (var fulfillableItemComponent in fulfillableItem.FulfillableItemComponents)
+                        {
+                            <tr class="rowComponent collapse @Css.DetailTableRowSublist">
+                                <td>@Html.DisplayFor(m => fulfillableItem.FulfillableItemId)/@Html.DisplayFor(m => fulfillableItemComponent.FulfillableItemComponentId)</td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-nowrap">
+                                    @Html.DisplayFor(m => fulfillableItemComponent.TotalQuantity)
+                                    @if (fulfillableItemComponent.ItemQuantity != fulfillableItemComponent.TotalQuantity)
+                                    {
+                                        @:(@Html.DisplayFor(m => fulfillableItemComponent.ItemQuantity)
+                                        @:per unit)
+                                    }
+                                </td>
+                                <td class="text-nowrap">@Html.DisplayForMultilineText(m => fulfillableItemComponent.Description)</td>
+                                <td>@Html.DisplayFor(m => fulfillableItemComponent.ConsumableReference)</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    @if (Is.Populated(Model.ShipmentRequests))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Shipment Requests <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#shipmentRequestCard">Show</button></h5>
+            <div class="collapse" id="shipmentRequestCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Shipment Request Number</th>
+                            <th>Shipment Request Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Create Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var shipmentRequest in Model.ShipmentRequests)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "ShipmentRequest", new { id = shipmentRequest.ShipmentRequestId })</td>
+                                <td>@Html.DisplayFor(m => shipmentRequest.Id)</td>
+                                <td>@Html.DisplayFor(m => shipmentRequest.ShipmentRequestNumber)</td>
+                                <td>@Html.DisplayFor(m => shipmentRequest.ShipmentRequestStatus)</td>
+                                <td>@Html.DisplayFor(m => shipmentRequest.StatusDateTime)</td>
+                                <td>@Html.DisplayFor(m => shipmentRequest.CreateDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Shipments))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Shipments <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#shipmentCard">Show</button></h5>
+            <div class="collapse" id="shipmentCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Shipment Status</th>
+                            <th>Shipping Vendor ID</th>
+                            <th>Tracking Code</th>
+                            <th>Shipment Date/Time</th>
+                            <th>Status Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var shipment in Model.Shipments)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "Shipment", new { id = shipment.ShipmentId })</td>
+                                <td>@Html.DisplayFor(m => shipment.Id)</td>
+                                <td>@Html.DisplayFor(m => shipment.ShipmentStatus)</td>
+                                <td>@Html.DisplayFor(m => shipment.ShippingVendorId)</td>
+                                <td>@Html.DisplayFor(m => shipment.TrackingCode)</td>
+                                <td>@Html.DisplayFor(m => shipment.ShipmentDateTime)</td>
+                                <td>@Html.DisplayFor(m => shipment.StatusDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.ReturnRequests))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Return Requests <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#returnRequestCard">Show</button></h5>
+            <div class="collapse" id="returnRequestCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Return Request Number</th>
+                            <th>Return Request Type</th>
+                            <th>Return Request Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Create Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var returnRequest in Model.ReturnRequests)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "ReturnRequest", new { id = returnRequest.ReturnRequestId })</td>
+                                <td>@Html.DisplayFor(m => returnRequest.Id)</td>
+                                <td>@Html.DisplayFor(m => returnRequest.ReturnRequestNumber)</td>
+                                <td>@Html.DisplayFor(m => returnRequest.ReturnRequestType)</td>
+                                <td>@Html.DisplayFor(m => returnRequest.ReturnRequestStatus)</td>
+                                <td>@Html.DisplayFor(m => returnRequest.StatusDateTime)</td>
+                                <td>@Html.DisplayFor(m => returnRequest.CreateDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Returns))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Returns <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#returnCard">Show</button></h5>
+            <div class="collapse" id="returnCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Return Number</th>
+                            <th>Return Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Create Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var _return in Model.Returns)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "Return", new { id = _return.ReturnId })</td>
+                                <td>@Html.DisplayFor(m => _return.Id)</td>
+                                <td>@Html.DisplayFor(m => _return.ReturnNumber)</td>
+                                <td>@Html.DisplayFor(m => _return.ReturnStatus)</td>
+                                <td>@Html.DisplayFor(m => _return.StatusDateTime)</td>
+                                <td>@Html.DisplayFor(m => _return.CreateDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Transactions))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Transactions <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#transactionCard">Show</button></h5>
+            <div class="collapse" id="transactionCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Unit of Work</th>
+                            <th>Transaction Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var transaction in Model.Transactions)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => transaction.Id)</td>
+                                <td class="text-nowrap">@Html.DisplayForMultilineText(m => transaction.Description)</td>
+                                <td>@Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })</td>
+                                <td>@Html.DisplayFor(m => transaction.TransactionDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Events))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Events <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#eventCard">Show</button></h5>
+            <div class="collapse" id="eventCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Event Type</th>
+                            <th>Event Date/TIme</th>
+                            <th>Processing Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Unif of Work</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var _event in Model.Events)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => _event.Id)</td>
+                                <td>@Html.DisplayFor(m => _event.EventTypeCode)</td>
+                                <td>@Html.DisplayFor(m => _event.EventDateTime)</td>
+                                <td>@Html.DisplayFor(m => _event.ProcessingStatusCode)</td>
+                                <td>@Html.DisplayFor(m => _event.StatusDateTime)</td>
+                                <td>@Html.ActionLink(_event.UnitOfWork, "Index", "Event", new { unitOfWork = _event.UnitOfWork })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

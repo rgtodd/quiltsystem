@@ -1,0 +1,93 @@
+.list-grid-item {
+    width: 152px;
+    border: 1px solid lightgray;
+    margin-bottom: 20px;
+}
+
+    .list-grid-item:hover {
+        box-shadow: 5px 5px 5px lightgray;
+    }
+
+.list-grid-item__header {
+    text-align: center;
+}
+
+.list-grid-item__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-grid-item__rename {
+    position: absolute;
+    margin-left: 175px;
+    visibility: hidden;
+}
+
+.list-grid-item--selected .list-grid-item__rename {
+    visibility: visible;
+    cursor: pointer;
+}
+
+.list-grid-item__body {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.list-grid-item__overlay {
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(255,255,255);
+    visibility: hidden;
+}
+
+.list-grid-item__action-link {
+    position: relative;
+    text-align: center;
+    top: 40px;
+}
+
+    .list-grid-item__action-link a {
+        color: inherit;
+    }
+
+    .list-grid-item__action-link .material-icons {
+        font-size: 3rem;
+    }
+
+.list-grid-item__action-link-button {
+    border: 0;
+    background: inherit;
+}
+
+.list-grid-item--selected .list-grid-item__overlay {
+    visibility: visible;
+}
+
+.list-grid-item__image {
+    display: block;
+}
+
+.list-grid-item__footer {
+    position: absolute;
+    width: 152px;
+    border: 1px solid lightgray;
+    text-align: center;
+    visibility: hidden;
+    padding-top: 3px;
+    background-color: white;
+    z-index: 1;
+}
+
+.list-grid-item:hover .list-grid-item__footer {
+    box-shadow: 5px 5px 5px lightgray;
+}
+
+.list-grid-item--selected .list-grid-item__footer {
+    visibility: visible;
+}

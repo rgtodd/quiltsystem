@@ -1,0 +1,38 @@
+﻿@model EditTransaction
+@{
+    ViewBag.Title = "Order - Post Transaction";
+}
+@using (Html.BeginForm("EditTransaction", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.OrderTransactionTypeCode, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.OrderTransactionTypeCode, Model.TransactionTypes, new { @class = "form-control" })
+        </div>
+    </div>
+    for (int idx = 0; idx < Model.TransactionEntries.Count; ++idx)
+    {
+        <div class="row">Item @idx</div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.TransactionEntries[idx].Selected, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.CheckBoxFor(m => m.TransactionEntries[idx].Selected, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.TransactionEntries[idx].Quantity, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.TransactionEntries[idx].Quantity, new { @class = "form-control" })
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.TransactionEntries[idx].OrderItemId)
+    }
+    <div class="form-group">
+        <div class="offset-sm-2 col-sm-10">
+            @Html.BootstrapListActionLink("Return", "Index", id: Model.OrderId)
+            <input type="submit" name="action~save" value="Save" class="btn btn-primary" />
+            <input type="submit" name="action~post" value="Save and Post" class="btn btn-primary" />
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.OrderId)
+}

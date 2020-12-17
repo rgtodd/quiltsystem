@@ -1,0 +1,15 @@
+﻿/* Select elements */
+.select {
+}
+
+.select__item {
+    border: 4px solid white;
+}
+
+.select__item--hover {
+    border-color: #6699ff;
+}
+
+.select__item--selected {
+    border-color: #6699ff;
+}

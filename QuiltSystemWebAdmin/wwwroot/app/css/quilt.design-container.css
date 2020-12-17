@@ -1,0 +1,107 @@
+.design-container {
+}
+
+/* Toolbar */
+
+.design-container__toolbar {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px;
+}
+
+.design-container__toolbar-item {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 8px;
+    padding: 4px;
+}
+
+.design-container__toolbar-item--nolabel {
+    padding-top: 30px;
+}
+
+.design-container__toolbar-item-label {
+    border-bottom: 1px solid gray;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.design-container__toolbar-item-control {
+    margin-top: 8px;
+    width: auto;
+}
+
+.design-container__toolbar-item-layout {
+}
+
+.design-container__toolbar-item-block {
+    float: left;
+}
+
+.design-container__toolbar-item-block-canvas {
+}
+
+.design-container__toolbar-item-block-swatch {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
+
+.design-container__toolbar-item-block-palette {
+    line-height: 0;
+}
+
+.design-container__toolbar-item-spin-icon {
+    -webkit-animation: spin 1000ms infinite linear;
+    -moz-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+    visibility: hidden;
+}
+
+.design-container__toolbar-item-spin-icon--active {
+    visibility: visible;
+}
+
+/* Tool Trays */
+
+.design-container__tooltrays {
+    width: 50%;
+}
+
+/* Preview */
+
+.design_container__preview {
+}
+
+.design_container__preview--tooltray-active {
+    float: right;
+}
+
+.design_container__preview-canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+/*@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}*/

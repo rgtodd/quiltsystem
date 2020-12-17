@@ -1,0 +1,88 @@
+﻿@model KitSummaryListModel
+@{
+    ViewBag.Title = "Kits";
+    var heading = new KitSummaryListModel();
+}
+@using (Html.ListBeginForm("ListSubmit", "Kit", FormMethod.Post, null))
+{
+    <div class="header">
+        <h5 class="header__title font-weight-bold">
+            @ViewBag.Title
+            @if (Model.HasDeletedKits)
+            {
+                @:&nbsp;&nbsp;
+                @Html.BootstrapSubmitButton("Undelete", Actions.Undelete, isHeader: true)
+            }
+        </h5>
+    </div>
+    <div class="list-grid row">
+        @foreach (var item in Model.KitSummaries)
+        {
+            <div class="col-6 col-md-3 col-xl-2">
+                <div class="list-grid-item list-grid__item" tabindex="0">
+                    <div class="list-grid-item__body">
+                        <img class="list-grid-item__image" src="@Url.Content("~/Thumbnail/Kit/" + item.KitId + "?size=150")" />
+                        <div class="list-grid-item__overlay">
+                            <div class="list-grid-item__action-link">
+                                <a href="@Url.Action("Index", new { id = item.KitId })"><i class="material-icons mode-edit"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-grid-item__footer">
+                        @*@Html.ActionLink("Edit", "Index", new { id = item.KitId })
+                            &#x2022;*@
+                        @if (Html.EcommerceEnabled())
+                        {
+                            @Html.ActionLink("Order", "Order", new { id = item.KitId });
+                            @:&#x2022;
+                        }
+                        @Html.ActionLink("Delete", "Delete", new { id = item.KitId })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clearfix"></div>
+    <div>@Html.PagedListPager(Model.KitSummaries, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}
+<div id="dlgRename" title="Rename Design" style="display: none">
+    @using (Html.BeginForm("RenameKit", "Kit", FormMethod.Post, new { id = "frmRename" }))
+    {
+        using (Html.BootstrapBeginForm().ForInput())
+        {
+            @Html.BootstrapInput(m => m.RenameKit.NewKitName)
+        }
+        @Html.HiddenFor(m => m.RenameKit.KitId)
+    }
+</div>
+@section scripts {
+    <script type="text/javascript">
+
+        $(function () {
+
+            listGridItem_initialize();
+
+            $("#dlgRename").dialog({
+                autoOpen: false,
+                closeText: "",
+                modal: true,
+                width: 400,
+                buttons: [
+                    { text: "Rename", click: function () { $("#frmRename").submit(); } },
+                    { text: "Cancel", click: function () { $(this).dialog("close"); } }
+                ]
+            });
+
+            $(".btn-rename").on("click", rename_kit);
+        })
+
+        function rename_kit(event) {
+            var kitId = $(this).attr("data-project-id");
+            var kitName = $(this).attr("data-project-name");
+
+            $("#RenameKit_KitId").val(kitId);
+            $("#RenameKit_NewKitName").val(kitName);
+            $("#dlgRename").dialog("open");
+        }
+    </script>
+}

@@ -1,0 +1,42 @@
+﻿@model LedgerSummary
+@{
+    ViewBag.Title = "Ledger";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-6">
+        <h3>Debit</h3>
+        <table class="table">
+            <tbody>
+                @foreach (var debitItem in Model.DebitItems)
+                {
+                    <tr>
+                        <td>@debitItem.LedgerAccountNumber</td>
+                        <td>@debitItem.Name</td>
+                        <td class="text-right">@Html.DisplayFor(m => debitItem.Amount)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <h3>Credit</h3>
+        <table class="table">
+            <tbody>
+                @foreach (var creditItem in Model.CreditItems)
+                {
+                    <tr>
+                        <td>@creditItem.LedgerAccountNumber</td>
+                        <td>@creditItem.Name</td>
+                        <td class="text-right">@Html.DisplayFor(m => creditItem.Amount)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

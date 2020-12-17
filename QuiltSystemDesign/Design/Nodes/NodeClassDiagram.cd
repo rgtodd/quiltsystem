@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Node">
+    <Position X="10.25" Y="1" Width="1.5" />
+    <Members>
+      <Method Name="AddShapeNodesTo" Hidden="true" />
+      <Method Name="AddUnboundLayoutSitesTo" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="GetFabricStyles" Hidden="true" />
+      <Method Name="GetNode" Hidden="true" />
+      <Method Name="GetShapeNodes" Hidden="true" />
+      <Method Name="GetUnboundLayoutSites" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Field Name="m_componentName" Hidden="true" />
+      <Field Name="m_componentType" Hidden="true" />
+      <Field Name="m_path" Hidden="true" />
+      <Field Name="m_style" Hidden="true" />
+      <Field Name="m_visible" Hidden="true" />
+      <Method Name="Node" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="UpdatePath" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAhAAAAAAABQAAIEEIAAAAAAEQAAAoAKBAMAAIAEABA=</HashCode>
+      <FileName>Design\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Path" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.LayoutNode" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAEAAAAAACAAIBAAAAAAI=</HashCode>
+      <FileName>Design\Nodes\LayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.ShapeNode" Collapsed="true">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAAAAAAAAAAIACAAIAAAAAAAA=</HashCode>
+      <FileName>Design\Nodes\ShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.BorderLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAgAEAAAAIAAoCCAAABAAACABI=</HashCode>
+      <FileName>Design\Nodes\Standard\BorderLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.FlyingGooseLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\FlyingGooseLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.GridLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAMAAAAAABAggFABQAAAAoQACACAAEAAAhI=</HashCode>
+      <FileName>Design\Nodes\Standard\GridLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.HalfSquareTriangleLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\HalfSquareTriangleLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.PageLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAABAAAgAEAAAAAAAoCAAAAAAAAAAhI=</HashCode>
+      <FileName>Design\Nodes\Standard\PageLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.RectangleOnPointLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="12.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\RectangleOnPointLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.SplitTriangleLayoutNode" Collapsed="true">
+    <Position X="13.25" Y="14.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\SplitTriangleLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.RectangleShapeNode" Collapsed="true">
+    <Position X="7.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Nodes\Standard\RectangleShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.TriangleShapeNode" Collapsed="true">
+    <Position X="7.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Nodes\Standard\TriangleShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Path.Path" Collapsed="true">
+    <Position X="13.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAAAgAAABFBAAEAAQAAgBAQIAAAAAAAAAQgBA=</HashCode>
+      <FileName>Design\Path\Path.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PathGeometry" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Path.RectanglePathGeometry" Collapsed="true">
+    <Position X="16.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAEAAAAAAQAAAIAAIAAAQAAAAAAAAA=</HashCode>
+      <FileName>Design\Path\RectanglePathGeometry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Path.TrianglePathGeometry" Collapsed="true">
+    <Position X="16.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAEAAAAAAQAAAIAAIAAAQAAAAAAAAA=</HashCode>
+      <FileName>Design\Path\TrianglePathGeometry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RichTodd.QuiltSystem.Design.Path.IPath" Collapsed="true">
+    <Position X="13.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAABFBAAEAAQAAgAAAIAAAAAAAAAQgBA=</HashCode>
+      <FileName>Design\Path\IPath.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RichTodd.QuiltSystem.Design.Path.IPathGeometry" Collapsed="true">
+    <Position X="16.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAQAAAAAAIAAAQAAAAAAAAA=</HashCode>
+      <FileName>Design\Path\IPathGeometry.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

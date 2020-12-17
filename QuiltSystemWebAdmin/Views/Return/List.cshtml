@@ -1,0 +1,56 @@
+﻿@model ReturnList
+@{
+    ViewBag.Title = "Returns";
+    var heading = ModelMetadata<ReturnListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Return", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.ReturnStatus, Model.Filter.ReturnStatusList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ReturnId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ReturnNumber))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableName))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableReference))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ReturnDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ReturnStatusName))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: item.ReturnId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.ReturnId)</td>
+                    <td>@Html.DisplayFor(m => item.ReturnNumber)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableId)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableName)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableReference)</td>
+                    <td>@Html.DisplayFor(m => item.ReturnDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.ReturnStatusName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

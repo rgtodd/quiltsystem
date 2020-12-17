@@ -1,0 +1,112 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.89
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemDatabase", "QuiltSystemDatabase\QuiltSystemDatabase.csproj", "{EEA348F0-77A9-4BAB-983E-19B754278314}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemDesign", "QuiltSystemDesign\QuiltSystemDesign.csproj", "{2D621806-B93C-45BB-A9AD-5C64C2BC27A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemLibrary", "QuiltSystemLibrary\QuiltSystemLibrary.csproj", "{2ADF9152-3282-4E91-BB1B-DEE2E2818B97}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemLibraryTest", "QuiltSystemLibraryTest\QuiltSystemLibraryTest.csproj", "{D9AD2C19-7E77-49E0-B102-FC7E0EB493CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemWeb", "QuiltSystemWeb\QuiltSystemWeb.csproj", "{64AC5459-EE94-46E1-B22D-E860323EA7D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemService", "QuiltSystemService\QuiltSystemService.csproj", "{AD848AE0-7B91-4606-A2DC-98A46EA1A8F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemServiceWeb", "QuiltSystemServiceWeb\QuiltSystemServiceWeb.csproj", "{4E5A3692-6937-4ED1-8BBE-D2FEED8C7FD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemWebJob", "QuiltSystemWebJob\QuiltSystemWebJob.csproj", "{9995E3B9-0568-48CB-AA6F-BB5F02673321}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemWebApi", "QuiltSystemWebApi\QuiltSystemWebApi.csproj", "{C9E7BA64-0BCC-41A1-9CCA-B81978086E2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemWebAdmin", "QuiltSystemWebAdmin\QuiltSystemWebAdmin.csproj", "{151C1E5B-F0E0-4F03-8276-6A4E839828D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemDatabaseModel", "QuiltSystemDatabaseModel\QuiltSystemDatabaseModel.csproj", "{4D50E1E9-41C5-4BC6-B00A-8C917CE0D8BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{903890A3-3CB5-4DE0-AD31-A9A4F494F46D}"
+	ProjectSection(SolutionItems) = preProject
+		QuiltSystem Design Document.docx = QuiltSystem Design Document.docx
+		QuiltSystem Design Document.pptx = QuiltSystem Design Document.pptx
+		QuiltSystem.sln.licenseheader = QuiltSystem.sln.licenseheader
+		README.md = README.md
+		README.pdf = README.pdf
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemServiceTest", "QuiltSystemServiceTest\QuiltSystemServiceTest.csproj", "{90AA7036-F7A3-4404-8805-AA90736EF3F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemServiceApi", "QuiltSystemServiceApi\QuiltSystemServiceApi.csproj", "{BF405FDE-4821-4FE5-A067-A6402BBCBD64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuiltSystemLibraryWeb", "QuiltSystemLibraryWeb\QuiltSystemLibraryWeb.csproj", "{C720CD83-0815-43A7-838B-3A22767EF4C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEA348F0-77A9-4BAB-983E-19B754278314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA348F0-77A9-4BAB-983E-19B754278314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA348F0-77A9-4BAB-983E-19B754278314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA348F0-77A9-4BAB-983E-19B754278314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D621806-B93C-45BB-A9AD-5C64C2BC27A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D621806-B93C-45BB-A9AD-5C64C2BC27A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D621806-B93C-45BB-A9AD-5C64C2BC27A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D621806-B93C-45BB-A9AD-5C64C2BC27A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADF9152-3282-4E91-BB1B-DEE2E2818B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ADF9152-3282-4E91-BB1B-DEE2E2818B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ADF9152-3282-4E91-BB1B-DEE2E2818B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ADF9152-3282-4E91-BB1B-DEE2E2818B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9AD2C19-7E77-49E0-B102-FC7E0EB493CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9AD2C19-7E77-49E0-B102-FC7E0EB493CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9AD2C19-7E77-49E0-B102-FC7E0EB493CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9AD2C19-7E77-49E0-B102-FC7E0EB493CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AC5459-EE94-46E1-B22D-E860323EA7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AC5459-EE94-46E1-B22D-E860323EA7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AC5459-EE94-46E1-B22D-E860323EA7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AC5459-EE94-46E1-B22D-E860323EA7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD848AE0-7B91-4606-A2DC-98A46EA1A8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD848AE0-7B91-4606-A2DC-98A46EA1A8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD848AE0-7B91-4606-A2DC-98A46EA1A8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD848AE0-7B91-4606-A2DC-98A46EA1A8F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5A3692-6937-4ED1-8BBE-D2FEED8C7FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5A3692-6937-4ED1-8BBE-D2FEED8C7FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5A3692-6937-4ED1-8BBE-D2FEED8C7FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5A3692-6937-4ED1-8BBE-D2FEED8C7FD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9995E3B9-0568-48CB-AA6F-BB5F02673321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9995E3B9-0568-48CB-AA6F-BB5F02673321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9995E3B9-0568-48CB-AA6F-BB5F02673321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9995E3B9-0568-48CB-AA6F-BB5F02673321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E7BA64-0BCC-41A1-9CCA-B81978086E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E7BA64-0BCC-41A1-9CCA-B81978086E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E7BA64-0BCC-41A1-9CCA-B81978086E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E7BA64-0BCC-41A1-9CCA-B81978086E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151C1E5B-F0E0-4F03-8276-6A4E839828D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151C1E5B-F0E0-4F03-8276-6A4E839828D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151C1E5B-F0E0-4F03-8276-6A4E839828D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151C1E5B-F0E0-4F03-8276-6A4E839828D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D50E1E9-41C5-4BC6-B00A-8C917CE0D8BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D50E1E9-41C5-4BC6-B00A-8C917CE0D8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D50E1E9-41C5-4BC6-B00A-8C917CE0D8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D50E1E9-41C5-4BC6-B00A-8C917CE0D8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90AA7036-F7A3-4404-8805-AA90736EF3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90AA7036-F7A3-4404-8805-AA90736EF3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90AA7036-F7A3-4404-8805-AA90736EF3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90AA7036-F7A3-4404-8805-AA90736EF3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF405FDE-4821-4FE5-A067-A6402BBCBD64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF405FDE-4821-4FE5-A067-A6402BBCBD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF405FDE-4821-4FE5-A067-A6402BBCBD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF405FDE-4821-4FE5-A067-A6402BBCBD64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C720CD83-0815-43A7-838B-3A22767EF4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C720CD83-0815-43A7-838B-3A22767EF4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C720CD83-0815-43A7-838B-3A22767EF4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C720CD83-0815-43A7-838B-3A22767EF4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77264E45-BB68-499D-A792-25A3712AF439}
+	EndGlobalSection
+EndGlobal

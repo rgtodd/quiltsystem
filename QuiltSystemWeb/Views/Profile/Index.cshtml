@@ -1,0 +1,19 @@
+﻿@model ProfileDetailModel
+@{
+    ViewBag.Title = "Account Summary";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@using (Html.BootstrapBeginForm().ForInput())
+{
+    @Html.BootstrapDisplay(m => m.Email, linkText: "Update", link: Url.Action("EditEmail", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.Password, linkText: "Update", link: Url.Action("ChangePassword", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.Name, linkText: "Update", link: Url.Action("EditName", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.NickName, linkText: "Update", link: Url.Action("EditNickname", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.WebsiteUrl, linkText: "Update", link: Url.Action("EditWebsite", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.ShippingAddressLines, linkText: "Update", link: Url.Action("EditShippingAddress", new { id = Model.UserId }))
+    @Html.BootstrapDisplay(m => m.TimeZoneName, linkText: "Update", link: Url.Action("EditTimeZone", new { id = Model.UserId }))
+}

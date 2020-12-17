@@ -1,0 +1,82 @@
+﻿@model CartSquareModel
+@{
+    ViewBag.Title = "Enter Payment Information";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+<div id="form-container">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Name">Card Number</label>
+        <div class="col-sm-4"><div id="sq-card-number"></div></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Name">Expiration Date</label>
+        <div class="col-sm-4"><div id="sq-expiration-date"></div></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Name">CVV</label>
+        <div class="col-sm-4"><div id="sq-cvv"></div></div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="Name">Postal Code</label>
+        <div class="col-sm-4"><div id="sq-postal-code"></div></div>
+    </div>
+    <button id="sq-creditcard" class="btn btn-primary" onclick="onGetCardNonce(event)">
+        Pay @Html.DisplayFor(m => m.OrderTotal)
+    </button>
+</div>
+@using (Html.BeginForm("Square", "Cart", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    @Html.HiddenFor(m => m.OrderTotal)
+    @Html.HiddenFor(m => m.Nonce)
+    @Html.HiddenFor(m => m.Errors)
+    @Html.HiddenFor(m => m.CardData)
+}
+@section scripts {
+    <script type="text/javascript" src="https://js.squareupsandbox.com/v2/paymentform"></script>
+    <script type="text/javascript">
+        const paymentForm = new SqPaymentForm({
+
+            applicationId: "sandbox-sq0idb-zjYGIIq16DdqTUkBUm9gcQ",
+            inputClass: 'form-control',
+            autoBuild: false,
+
+            cardNumber: {
+                elementId: 'sq-card-number',
+                placeholder: 'Card Number'
+            },
+            cvv: {
+                elementId: 'sq-cvv',
+                placeholder: 'CVV'
+            },
+            expirationDate: {
+                elementId: 'sq-expiration-date',
+                placeholder: 'MM/YY'
+            },
+            postalCode: {
+                elementId: 'sq-postal-code',
+                placeholder: 'Postal'
+            },
+
+            callbacks: {
+                cardNonceResponseReceived: function (errors, nonce, cardData) {
+                    $('#Nonce').val(nonce);
+                    $('#Errors').val(JSON.stringify(errors));
+                    $('#CardData').val(JSON.stringify(cardData));
+                    $('#frmMain').submit();
+                    //alert(`The generated nonce is:\n${nonce}`);
+                }
+            }
+        });
+
+        function onGetCardNonce(event) {
+            paymentForm.requestCardNonce();
+        }
+
+        paymentForm.build();
+
+    </script>
+}

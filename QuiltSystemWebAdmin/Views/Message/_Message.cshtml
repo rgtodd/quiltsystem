@@ -1,0 +1,40 @@
+﻿@model Message
+<div class="card mt-3">
+    @{
+        string css;
+        if (Model.Highlight)
+        {
+            css = "text-white bg-primary";
+        }
+        else
+        {
+            css = string.Empty;
+        }
+    }
+    <div class="card-header @css">
+        <div class="row">
+            <div class="col-md-4">
+                <div>@Html.LabelFor(m => m.From, $"{Html.DisplayNameFor(m => m.From)}:") @Html.DisplayFor(m => m.From)</div>
+                <div>@Html.LabelFor(m => m.To, $"{Html.DisplayNameFor(m => m.To)}:") @Html.DisplayFor(m => m.To)</div>
+            </div>
+            <div class="col-md-4">
+                <div>@Html.LabelFor(m => m.SentDateTime, $"{Html.DisplayNameFor(m => m.SentDateTime)}:") @Html.DisplayFor(m => m.SentDateTime)</div>
+                <div>@Html.LabelFor(m => m.AcknowledgementDateTime, $"{Html.DisplayNameFor(m => m.AcknowledgementDateTime)}:") @Html.DisplayFor(m => m.AcknowledgementDateTime)</div>
+            </div>
+            @if (Model.EmailRequestId != null)
+            {
+                <div class="col-md-4">
+                    <div>@Html.LabelFor(m => m.EmailRequestId, $"{Html.DisplayNameFor(m => m.EmailRequestId)}:") @Html.DisplayFor(m => m.EmailRequestId)</div>
+                    <div>@Html.LabelFor(m => m.EmailRequestStatusCode, $"{Html.DisplayNameFor(m => m.EmailRequestStatusCode)}:") @Html.DisplayFor(m => m.EmailRequestStatusCode)</div>
+                    <div>@Html.LabelFor(m => m.StatusDateTime, $"{Html.DisplayNameFor(m => m.StatusDateTime)}:") @Html.DisplayFor(m => m.StatusDateTime)</div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div>@Html.LabelFor(m => m.Subject, string.Format("{0}:", Html.DisplayNameFor(m => m.Subject))) @Html.DisplayFor(m => m.Subject)</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body" style="white-space: pre-line;">@Html.DisplayFor(m => m.Text)</div>
+</div>

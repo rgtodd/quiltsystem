@@ -1,0 +1,37 @@
+﻿@model OrderDetailListModel
+@{
+    ViewBag.Title = "Orders";
+}
+<p>@Html.BootstrapActionLink("Shopping Cart", "Cart", "Index")</p>
+@foreach (var order in Model.Orders)
+{
+    @await Html.PartialAsync("_Order", order)
+}
+<div class="clearfix"></div>
+<div>@Html.PagedListPager(Model.Orders, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+            $(".collapse")
+                .on("shown.bs.collapse", function () {
+                    $(this)
+                        .prev()
+                        .find(".site-toggle")
+                        .removeClass("expand-more")
+                        .addClass("expand-less");
+                })
+                .on("hidden.bs.collapse", function () {
+                    $(this)
+                        .prev()
+                        .find(".site-toggle")
+                        .removeClass("expand-less")
+                        .addClass("expand-more");
+                });
+        });
+
+        $(".btn-order").click(function () {
+            $(this).parents(".card").children(".collapse").collapse("toggle");
+        });
+    </script>
+}

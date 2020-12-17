@@ -1,0 +1,29 @@
+﻿@model OrderDetailItemModel
+<h3>@Html.DisplayFor(m => m.Name) (@Html.DisplayFor(m => m.Sku))</h3>
+<div class="row">
+    <div class="col-sm-8">
+        <img src="@Url.ActionLink("KitSnapshot", "Thumbnail", new { id = Model.OrderableReference, size = 150 })" />
+    </div>
+    <div class="col-sm-4">
+    </div>
+</div>
+@using (Html.BootstrapBeginForm().ForDisplay())
+{
+    @Html.BootstrapDisplay(m => m.Status)
+    @Html.BootstrapDisplay(m => m.UnitPrice)
+    @Html.BootstrapDisplay(m => m.Quantity)
+    @Html.BootstrapDisplay(m => m.TotalPrice)
+}
+@if (Is.Populated(Model.Components))
+{
+    <label class="control-label">Fabrics</label>
+    foreach (var component in Model.Components)
+    {
+        <div class="row">
+            <div class="col-sm-7"><small>@Html.DisplayFor(m => component.Description) (@Html.DisplayFor(m => component.Sku))</small></div>
+            <div class="col-sm-4 text-right"><small>@Html.DisplayFor(m => component.Quantity) @@ @Html.DisplayFor(m => component.UnitPrice)</small></div>
+            <div class="col-sm-1 text-right"><small>@Html.DisplayFor(m => component.TotalPrice)</small></div>
+        </div>
+    }
+}
+

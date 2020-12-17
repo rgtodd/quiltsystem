@@ -1,0 +1,206 @@
+﻿@model MessageSummaryModel
+@{
+    ViewBag.Title = "Message Center";
+    var notificationHeading = ModelMetadata<NotificationDetailModel>.Create(Context.RequestServices);
+    var messageHeading = ModelMetadata<MessageDetailModel>.Create(Context.RequestServices);
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@using (Html.ListBeginForm("ListSubmit", "Message", FormMethod.Post, null))
+{
+    <div class="header">
+        <h5 class="header__title font-weight-bold">
+            Notifications
+            &nbsp;&nbsp;
+            @if (Model.IncludeOldNotifications)
+            {
+                @Html.BootstrapListActionLink("Show New", "Index", isHeader: true, index: MessageSummaryModel.NotificationSection, filter: "")
+            }
+            else
+            {
+                @Html.BootstrapListActionLink("Show All", "Index", isHeader: true, index: MessageSummaryModel.NotificationSection, filter: "all")
+            }
+            @if (Model.HasNewNotifications)
+            {
+                @Html.BootstrapSubmitButton("Acknowledge", Actions.Acknowledge, isHeader: true)
+            }
+        </h5>
+    </div>
+    if (Model.Notifications.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-10 text-center">@Html.ListHeadingActionLink(notificationHeading.GetDisplayName(m => m.New), MessageSummaryModel.NotificationSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(notificationHeading.GetDisplayName(m => m.SentDateTime), MessageSummaryModel.NotificationSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(notificationHeading.GetDisplayName(m => m.OrderNumber), MessageSummaryModel.NotificationSection)</th>
+                    <th scope="col" class="w-50">@Html.ListHeadingActionLink(notificationHeading.GetDisplayName(m => m.Text), MessageSummaryModel.NotificationSection)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int idx = 0; idx < Model.Notifications.Count; ++idx)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @if (Model.Notifications[idx].New)
+                            {
+                                <i class="material-icons star"></i>
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(m => m.Notifications[idx].SentDateTime)</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(Model.Notifications[idx].OrderId))
+                            {
+                                @Html.ActionLink(Model.Notifications[idx].OrderNumber, "Index", "Order", new { id = Model.Notifications[idx].OrderId }, null)
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(m => m.Notifications[idx].Text)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>@Html.PagedListPager(Model.Notifications, page => Html.ListActionUrl("Index", page, MessageSummaryModel.NotificationSection), BootstrapPaging.Options)</div>
+    }
+    else
+    {
+        if (Model.IncludeOldNotifications)
+        {
+            <p>No notifications.</p>
+        }
+        else
+        {
+            <p>No new notifications.  Click "Show All" to look for old notifications.</p>
+        }
+    }
+    <div class="header">
+        <h5 class="header__title font-weight-bold">
+            Inbox
+            &nbsp;&nbsp;
+            @if (Model.IncludeOldIncomingMessages)
+            {
+                @Html.BootstrapListActionLink("Show New", "Index", isHeader: true, index: MessageSummaryModel.IncomingSection, filter: "")
+            }
+            else
+            {
+                @Html.BootstrapListActionLink("Show All", "Index", isHeader: true, index: MessageSummaryModel.IncomingSection, filter: "all")
+            }
+        </h5>
+    </div>
+    if (Model.IncomingMessages.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-10 text-center"></th>
+                    <th scope="col" class="w-10 text-center">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.New), MessageSummaryModel.IncomingSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.ReceivedDateTime), MessageSummaryModel.IncomingSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.OrderNumber), MessageSummaryModel.IncomingSection)</th>
+                    <th scope="col" class="w-50">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.Subject), MessageSummaryModel.IncomingSection)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int idx = 0; idx < Model.IncomingMessages.Count; ++idx)
+                {
+                    <tr>
+                        <td>@Html.BootstrapListActionLink("View", "Index", id: Model.IncomingMessages[idx].MessageId)</td>
+                        <td class="text-center">
+                            @if (Model.IncomingMessages[idx].New)
+                            {
+                                <i class="material-icons star"></i>
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(m => m.IncomingMessages[idx].ReceivedDateTime)</td>
+                        <td>
+                            @if (Model.IncomingMessages[idx].OrderId.HasValue)
+                            {
+                                @Html.ActionLink(Model.IncomingMessages[idx].OrderNumber, "Index", "Order", new { id = Model.IncomingMessages[idx].OrderId }, null)
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(m => m.IncomingMessages[idx].Subject)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>@Html.PagedListPager(Model.IncomingMessages, page => Html.ListActionUrl("Index", page, MessageSummaryModel.IncomingSection), BootstrapPaging.Options)</div>
+    }
+    else
+    {
+        if (Model.IncludeOldIncomingMessages)
+        {
+            <p>No messages.</p>
+        }
+        else
+        {
+            <p>No new messages.  Click "Show All" to look for old messages.</p>
+        }
+    }
+    <div class="header">
+        <h5 class="header__title font-weight-bold">
+            Sent Messages
+            &nbsp;&nbsp;
+            @if (Model.IncludeOldOutgoingMessages)
+            {
+                @Html.BootstrapListActionLink("Show New", "Index", isHeader: true, index: MessageSummaryModel.OutgoingSection, filter: "")
+            }
+            else
+            {
+                @Html.BootstrapListActionLink("Show All", "Index", isHeader: true, index: MessageSummaryModel.OutgoingSection, filter: "all")
+            }
+            @Html.BootstrapListActionLink("New", "Create", isHeader: true)
+        </h5>
+    </div>
+    if (Model.OutgoingMessages.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-10 text-center"></th>
+                    <th scope="col" class="w-10 text-center">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.New), MessageSummaryModel.OutgoingSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.SentDateTime), MessageSummaryModel.OutgoingSection)</th>
+                    <th scope="col" class="w-20">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.OrderNumber), MessageSummaryModel.OutgoingSection)</th>
+                    <th scope="col" class="w-50">@Html.ListHeadingActionLink(messageHeading.GetDisplayName(m => m.Subject), MessageSummaryModel.OutgoingSection)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int idx = 0; idx < Model.OutgoingMessages.Count; ++idx)
+                {
+                    <tr>
+                        <td>@Html.BootstrapListActionLink("View", "Index", id: Model.OutgoingMessages[idx].MessageId)</td>
+                        <td class="text-center">
+                            @if (Model.OutgoingMessages[idx].New)
+                            {
+                                <i class="material-icons star"></i>
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(m => m.OutgoingMessages[idx].SentDateTime)</td>
+                        <td>
+                            @if (Model.OutgoingMessages[idx].OrderId.HasValue)
+                            {
+                                @Html.ActionLink(Model.OutgoingMessages[idx].OrderNumber, "Index", "Order", new { id = Model.OutgoingMessages[idx].OrderId }, null)
+                            }
+                        </td>
+
+                        <td>@Html.DisplayFor(m => m.OutgoingMessages[idx].Subject)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>@Html.PagedListPager(Model.OutgoingMessages, page => Html.ListActionUrl("Index", page, MessageSummaryModel.OutgoingSection), BootstrapPaging.Options)</div>
+    }
+    else
+    {
+        if (Model.IncludeOldOutgoingMessages)
+        {
+            <p>No messages.</p>
+        }
+        else
+        {
+            <p>No new messages.  Click "Show All" to look for old messages.</p>
+        }
+    }
+}
+@section Scripts {
+}

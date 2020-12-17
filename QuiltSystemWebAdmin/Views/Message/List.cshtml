@@ -1,0 +1,52 @@
+﻿@model MessageList
+@{
+    ViewBag.Title = "Messages";
+    var heading = ModelMetadata<Message>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.Mailbox, Model.Filter.MailboxList)
+        @Html.BootstrapInput(m => m.Filter.Status, Model.Filter.StatusList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+            @Html.BootstrapSubmitButton("Mark All Complete", Actions.MarkAllComplete)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.From))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.To))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.SentDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Subject))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model.Messages)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("View", "Index", id: message.MessageId)
+                    </td>
+                    <td>@Html.DisplayFor(m => message.From)</td>
+                    <td>@Html.DisplayFor(m => message.To)</td>
+                    <td>@Html.DisplayFor(m => message.SentDateTime)</td>
+                    <td>@Html.DisplayFor(m => message.Subject)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Messages.PageCount < Model.Messages.PageNumber ? 0 : Model.Messages.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Messages, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

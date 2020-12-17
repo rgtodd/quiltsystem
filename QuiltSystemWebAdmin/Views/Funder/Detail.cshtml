@@ -1,0 +1,155 @@
+﻿@model Funder
+@{
+    ViewBag.Title = "Funder " + Model.FunderId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Funders", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "Funder", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.FunderId)
+    @using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.FunderId)
+        if (Model.FunderReference != null)
+        {
+            var funderReference = RichTodd.QuiltSystem.Service.Base.ParseReferenceValues.From(Model.FunderReference);
+            var funderReferenceText = funderReference.ToString();
+            @Html.BootstrapDisplay(m => funderReferenceText, labelFormat: "Funder Reference", link: Url.Action(funderReference))
+        }
+        @Html.BootstrapDisplay(m => m.UpdateDateTime)
+        @Html.BootstrapDisplay(m => m.TotalFundsReceived)
+        @Html.BootstrapDisplay(m => m.TotalFundsAvailable)
+        @Html.BootstrapDisplay(m => m.TotalFundsRefunded)
+        @Html.BootstrapDisplay(m => m.TotalFundsRefundable)
+        @Html.BootstrapDisplay(m => m.TotalProcessingFee)
+    }
+    @if (Is.Populated(Model.Accounts))
+    {
+        <h3>Funder Accounts</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fundable Reference</th>
+                    <th>Funds Received</th>
+                    <th>Funds Available</th>
+                    <th>Funds Refunded</th>
+                    <th>Funds Refundable</th>
+                    <th>Processing Fee</th>
+                    <th>Update Date/Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var account in Model.Accounts)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => account.FundableReference)</td>
+                        <td>@Html.DisplayFor(m => account.FundsReceived)</td>
+                        <td>@Html.DisplayFor(m => account.FundsAvailable)</td>
+                        <td>@Html.DisplayFor(m => account.FundsRefunded)</td>
+                        <td>@Html.DisplayFor(m => account.FundsRefundable)</td>
+                        <td>@Html.DisplayFor(m => account.ProcessingFee)</td>
+                        <td>@Html.DisplayFor(m => account.UpdateDateTime)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @if (Is.Populated(Model.Fundables))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Fundables <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#fundableCard">Show</button></h5>
+            <div class="collapse" id="fundableCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>Fundable ID</th>
+                            <th>Fundable Reference</th>
+                            <th>Funds Required</th>
+                            <th>Funds Received</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var fundable in Model.Fundables)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "Fundable", new { id = fundable.FundableId })</td>
+                                <td>@Html.DisplayFor(m => fundable.FundableId)</td>
+                                <td>@Html.DisplayFor(m => fundable.FundableReference)</td>
+                                <td>@Html.DisplayFor(m => fundable.FundsRequired)</td>
+                                <td>@Html.DisplayFor(m => fundable.FundsReceived)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Transactions))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Transactions <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#transactionCard">Show</button></h5>
+            <div class="collapse" id="transactionCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Unit of Work</th>
+                            <th>Transaction Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var transaction in Model.Transactions)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => transaction.Id)</td>
+                                <td class="text-nowrap">@Html.DisplayForMultilineText(m => transaction.Description)</td>
+                                <td>@Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })</td>
+                                <td>@Html.DisplayFor(m => transaction.TransactionDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Events))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Events <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#eventCard">Show</button></h5>
+            <div class="collapse" id="eventCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Event Type</th>
+                            <th>Event Date/TIme</th>
+                            <th>Processing Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Unif of Work</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var _event in Model.Events)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => _event.Id)</td>
+                                <td>@Html.DisplayFor(m => _event.EventTypeCode)</td>
+                                <td>@Html.DisplayFor(m => _event.EventDateTime)</td>
+                                <td>@Html.DisplayFor(m => _event.ProcessingStatusCode)</td>
+                                <td>@Html.DisplayFor(m => _event.StatusDateTime)</td>
+                                <td>@Html.ActionLink(_event.UnitOfWork, "Index", "Event", new { unitOfWork = _event.UnitOfWork })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

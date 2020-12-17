@@ -1,0 +1,43 @@
+﻿@model NavBarVcModel
+@{
+    Layout = null;
+}
+<ul class="nav navbar-nav">
+    <li class="nav-item dropdown active">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View</a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Orders", "Index", "Order", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Shipment Requests", "Index", "ShipmentRequest", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Shipments", "Index", "Shipment", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Return Requests", "Index", "ReturnRequest", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Returns", "Index", "Return", null, new { @class = "dropdown-item site-link" })</li>
+            <li role="separator" class="dropdown-divider"></li>
+            <li>@Html.ActionLink("PayPal IPNs", "Index", "PayPal", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Account Receipts", "Index", "AccountReceipt", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Account Payments", "Index", "AccountPayment", null, new { @class = "dropdown-item site-link" })</li>
+            <li role="separator" class="dropdown-divider"></li>
+            <li>@Html.ActionLink("Users", "Index", "User", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Profiles", "Index", "UserProfile", null, new { @class = "dropdown-item site-link" })</li>
+            <li role="separator" class="dropdown-divider"></li>
+            <li>@Html.ActionLink("Inventory", "Index", "InventoryItem", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Reports", "Index", "Report", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Logs", "Index", "Log", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Alerts", "Index", "Alert", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Messages", "Index", "Message", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Notifications", "Index", "Notification", null, new { @class = "dropdown-item site-link" })</li>
+            <li>@Html.ActionLink("Test", "Index", "Test", null, new { @class = "dropdown-item site-link" })</li>
+        </ul>
+    </li>
+</ul>
+<span class="navbar-text"><span class="d-none d-xl-inline">XL</span><span class="d-none d-lg-inline d-xl-none">LG</span><span class="d-none d-md-inline d-lg-none">MD</span><span class="d-none d-sm-inline d-md-none">SM</span></span>
+@using (Html.BeginForm("LogOff", "Login", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav navbar-nav">
+        <li class="nav-item"><a href="@Url.Action("Index", "Help")" class="nav-link header__link"><i class="material-icons help"></i></a></li>
+        <li class="nav-item">
+            @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active header__link" })
+        </li>
+        <li class="nav-item active"><a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link header__link">Log off</a></li>
+    </ul>
+}

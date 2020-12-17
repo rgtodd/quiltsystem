@@ -1,0 +1,5 @@
+﻿@model OrderDetailModel
+@{
+    ViewBag.Title = "Order - " + Model.OrderNumber;
+}
+@await Html.PartialAsync("_Order", Model)

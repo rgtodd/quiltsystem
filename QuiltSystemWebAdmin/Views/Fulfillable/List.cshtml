@@ -1,0 +1,62 @@
+﻿@model FulfillableList
+@{
+    ViewBag.Title = "Fulfillables";
+    var heading = ModelMetadata<FulfillableListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Fulfillable", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.FulfillableStatus, Model.Filter.FulfillableStatusList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableId))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Name))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableReference))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableStatus))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.CreateDateTime))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.StatusDateTime))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFulfillmentRequiredQuantity))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFulfillmentCompleteQuantity))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFulfillmentReturnQuantity))</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.BootstrapListActionLink("Detail", "Index", id: item.FulfillableId)
+                        </td>
+                        <td>@Html.DisplayFor(m => item.FulfillableId)</td>
+                        <td>@Html.DisplayFor(m => item.Name)</td>
+                        <td>@Html.DisplayFor(m => item.FulfillableReference)</td>
+                        <td>@Html.DisplayFor(m => item.FulfillableStatus)</td>
+                        <td>@Html.DisplayFor(m => item.CreateDateTime)</td>
+                        <td>@Html.DisplayFor(m => item.StatusDateTime)</td>
+                        <td>@Html.DisplayFor(m => item.TotalFulfillmentRequiredQuantity)</td>
+                        <td>@Html.DisplayFor(m => item.TotalFulfillmentCompleteQuantity)</td>
+                        <td>@Html.DisplayFor(m => item.TotalFulfillmentReturnQuantity)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

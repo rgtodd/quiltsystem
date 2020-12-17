@@ -1,0 +1,16 @@
+﻿@model MessageDetailModel
+<div class="card mb-3">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-3">
+                <div>@Html.LabelFor(m => m.From, string.Format("{0}:", Html.DisplayNameFor(m => m.From))) @Html.DisplayFor(m => m.From)</div>
+                <div>@Html.LabelFor(m => m.To, string.Format("{0}:", Html.DisplayNameFor(m => m.To))) @Html.DisplayFor(m => m.To)</div>
+            </div>
+            <div class="col-9">
+                <div>@Html.LabelFor(m => m.SentDateTime, string.Format("{0}:", Html.DisplayNameFor(m => m.SentDateTime))) @Html.DisplayFor(m => m.SentDateTime)</div>
+                <div>@Html.LabelFor(m => m.Subject, string.Format("{0}:", Html.DisplayNameFor(m => m.Subject))) @Html.DisplayFor(m => m.Subject)</div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body" style="white-space: pre-line;">@Html.DisplayFor(m => m.Text)</div>
+</div>

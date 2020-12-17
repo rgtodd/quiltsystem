@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron">
+    <h1>Quilt-A-GoGo</h1>
+    <p class="lead">Design and create your own unique quilts.</p>
+    <p>
+        @if (Html.PublicRegistrationEnabled())
+        {
+            @Html.BootstrapActionLink("Register &raquo;", "Register", "Login")
+        }
+        @Html.BootstrapActionLink("Sign In &raquo;", "Index", "Member")
+    </p>
+</div>

@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EmailHtmlTemplate" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;$SUBJECT$&lt;/title&gt;
+    &lt;style type="text/css"&gt;
+        .email-body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12pt;
+            width: 100%;
+            height: 100%;
+            background-color: #fbf3b7;
+        }
+
+        .email-content {
+            width: 600px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .email-header {
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .email-heading {
+            font-size: 2rem;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .email-prewrap {
+            width: 600px;
+            white-space: pre-wrap; /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body style="border: 0; margin: 0; padding: 0;"&gt;
+    &lt;table role="presentation" border="0" cellspacing="0" cellpadding="0" class="email-body"&gt;
+        &lt;tr&gt;
+            &lt;td align="center" valign="top"&gt;
+                &lt;table role="presentation" border="0" cellspacing="0" cellpadding="0" class="email-content"&gt;
+                    &lt;tr&gt;
+                        &lt;td class="email-header"&gt;&lt;img src="$FULL-URL$/images/logo-email.gif" /&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="email-heading"&gt;$SUBJECT$&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            $TEMPLATE-BODY$
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="EmailInboundMessageHtmlTemplate" xml:space="preserve">
+    <value>&lt;p&gt;
+    From: $SENDER-NAME$ ($SENDER-EMAIL$)
+&lt;/p&gt;
+&lt;p&gt;
+    Subject: $MESSAGE-SUBJECT$
+&lt;/p&gt;
+&lt;p&gt;
+    $MESSAGE-TEXT$
+&lt;/p&gt;
+&lt;p&gt;
+    Click &lt;a href="$ADMIN-FULL-URL$/Message/Index/%MESSAGE-ID%"&gt;here&lt;/a&gt; to open.
+&lt;/p&gt;
+$ORDER-COMPONENT$</value>
+  </data>
+  <data name="EmailInboundMessageOrderHtmlComponent" xml:space="preserve">
+    <value>&lt;p&gt;
+    &lt;a href="$ADMIN-FULL-URL$/Order/Index/$ORDER-ID$"&gt;Order $ORDER-NUMBER$&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="EmailInboundMessageOrderTextComponent" xml:space="preserve">
+    <value>
+Order $ORDER-NUMBER$: $ADMIN-FULL-URL$/Order/Index/$ORDER-ID$</value>
+  </data>
+  <data name="EmailInboundMessageTextTemplate" xml:space="preserve">
+    <value>From: $SENDER-NAME$ ($SENDER-EMAIL$)
+Subject: $MESSAGE-SUBJECT$
+
+$MESSAGE-TEXT$
+
+Open message: $ADMIN-FULL-URL$/Message/Index/%MESSAGE-ID%
+
+$ORDER-COMPONENT$</value>
+  </data>
+  <data name="EmailOutboundMessageHtmlTemplate" xml:space="preserve">
+    <value>&lt;p&gt;
+    Subject: $MESSAGE-SUBJECT$
+&lt;/p&gt;
+&lt;p&gt;
+    $MESSAGE-TEXT$
+&lt;/p&gt;
+&lt;p&gt;
+    Click &lt;a href="$FULL-URL$/Message/Index/%MESSAGE-ID%"&gt;here&lt;/a&gt; to open.
+&lt;/p&gt;
+$ORDER-COMPONENT$</value>
+  </data>
+  <data name="EmailOutboundMessageOrderHtmlComponent" xml:space="preserve">
+    <value>&lt;p&gt;
+    &lt;a href="$FULL-URL$/Order/Index/$ORDER-ID$"&gt;Order $ORDER-NUMBER$&lt;/a&gt;
+&lt;/p&gt;</value>
+  </data>
+  <data name="EmailOutboundMessageOrderTextComponent" xml:space="preserve">
+    <value>
+Order $ORDER-NUMBER$: $FULL-URL$/Order/Index/$ORDER-ID$</value>
+  </data>
+  <data name="EmailOutboundMessageTextTemplate" xml:space="preserve">
+    <value>Subject: $MESSAGE-SUBJECT$
+
+$MESSAGE-TEXT$
+
+Open message: $FULL-URL$/Message/Index/%MESSAGE-ID%
+
+$ORDER-COMPONENT$</value>
+  </data>
+  <data name="EmailTextTemplate" xml:space="preserve">
+    <value>$SUBJECT$
+
+$TEMPLATE-BODY$</value>
+  </data>
+  <data name="EmailUserRegistrationHtmlTemplate" xml:space="preserve">
+    <value>&lt;p&gt;
+    A new account was created at &lt;a href="$FULL-URL$"&gt;$URL$&lt;/a&gt; using this email address.
+&lt;/p&gt;
+&lt;p&gt;
+    If you created this account, please confirm by clicking &lt;a href="$LINK$"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+    Alternatively, you may copy and paste the following URL into a browser window:
+&lt;/p&gt;
+&lt;pre class="email-prewrap"&gt;$LINK$&lt;/pre&gt;
+&lt;p&gt;
+    If you did not register this e-mail address, please delete this e-mail.
+&lt;/p&gt;
+&lt;p&gt;
+    For questions about this e-mail, please contact &lt;a href="mailto:$SUPPORT-EMAIL$"&gt;$SUPPORT-EMAIL$&lt;/a&gt;.
+&lt;/p&gt;</value>
+  </data>
+  <data name="EmailUserRegistrationTextTemplate" xml:space="preserve">
+    <value>A new account was created at $URL$ using this email address.
+
+If you created this account, please confirm by clicking the following link.
+
+$LINK$
+
+Alternatively, you may copy and paste the link into a browser window.
+
+If you did not register this e-mail address, please delete this e-mail.
+
+For questions about this e-mail, please contact $SUPPORT-EMAIL$.</value>
+  </data>
+  <data name="EmailUserResetHtmlTemplate" xml:space="preserve">
+    <value>&lt;p&gt;
+    A password reset request was made at &lt;a href="$FULL-URL$"&gt;$URL$&lt;/a&gt; using this email address.
+&lt;/p&gt;
+&lt;p&gt;
+    If you made this request, please confirm by clicking &lt;a href="$LINK$"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+    Alternatively, you may copy and paste the following URL into a browser window:
+&lt;/p&gt;
+&lt;pre class="email-prewrap"&gt;$LINK$&lt;/pre&gt;
+&lt;p&gt;
+    If you did not make this request, please delete this e-mail.
+&lt;/p&gt;
+&lt;p&gt;
+    For questions about this e-mail, please contact &lt;a href="mailto:$SUPPORT-EMAIL$"&gt;$SUPPORT-EMAIL$&lt;/a&gt;.
+&lt;/p&gt;</value>
+  </data>
+  <data name="EmailUserResetTextTemplate" xml:space="preserve">
+    <value>A password reset request was made at $URL$ using this email address.
+
+If you created this account, please confirm by clicking the following link.
+
+$LINK$
+
+Alternatively, you may copy and paste the link into a browser window.
+
+If you did make this request, please delete this e-mail.
+
+For questions about this e-mail, please contact $SUPPORT-EMAIL$.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ModelCreateViews" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ModelCreateViews.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="OrderShippedNotification" xml:space="preserve">
+    <value>Your recent order at quiltagogo.com has shipped.
+
+You can view this order and tracking information using the following link:
+
+    %ORDER%
+
+We appreciate your business.
+
+QuiltAGoGo.com
+
+This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
+  </data>
+  <data name="OrderShippingNotification" xml:space="preserve">
+    <value>Your recent order at quiltagogo.com is being prepared for shipment.  We will send you another notification when the order has been shipped.
+
+You can view this order using the following link:
+
+    %ORDER%
+
+We appreciate your business.
+
+QuiltAGoGo.com
+
+This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
+  </data>
+  <data name="RefundIssuedNotification" xml:space="preserve">
+    <value>A refund has been issued for your order at quiltagogo.com.
+
+You can view this order using the following link:
+
+    %ORDER%
+
+We appreciate your business.
+
+QuiltAGoGo.com
+
+This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
+  </data>
+</root>

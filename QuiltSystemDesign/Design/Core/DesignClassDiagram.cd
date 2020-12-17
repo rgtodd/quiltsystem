@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Design.Core.Design">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Design" Hidden="true" />
+      <Method Name="GetStandardSize" Hidden="true" />
+      <Method Name="GetStandardSizes" Hidden="true" />
+      <Field Name="HeightParameter" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Field Name="m_layoutComponent" Hidden="true" />
+      <Field Name="m_parameters" Hidden="true" />
+      <Field Name="WidthParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAQAAAAAwAAEAAEBAAAIAAAIAAAAgQABA=</HashCode>
+      <FileName>Design\Core\Design.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LayoutComponent" />
+      <Property Name="Parameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Component.Standard.LayoutComponent" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAABEAAAAQAAQANIAABCAAABAEhA=</HashCode>
+      <FileName>Design\Component\Standard\LayoutComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.DesignParameterCollection" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAABAAAIAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Core\DesignParameterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.Kit">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CreateKitBuildItem" Hidden="true" />
+      <Method Name="CreateKitBuildItemNode" Hidden="true" />
+      <Method Name="CreateKitBuildItemPattern" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="Kit" Hidden="true" />
+      <Field Name="m_buildSteps" Hidden="true" />
+      <Field Name="m_design" Hidden="true" />
+      <Field Name="m_kitSpecification" Hidden="true" />
+      <Field Name="m_parts" Hidden="true" />
+      <Method Name="RefreshOutputs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ARAAAAYAAEACCAAAABAAAAAAAAAAQYAAQAAAAAAgABA=</HashCode>
+      <FileName>Design\Core\Kit.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Design" />
+      <Property Name="KitSpecification" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="BuildSteps" />
+      <Property Name="Parts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitSpecification">
+    <Position X="3.25" Y="4" Width="3.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Field Name="DefaultBackingFabricStyle" Hidden="true" />
+      <Field Name="DefaultBindingFabricStyle" Hidden="true" />
+      <Field Name="DefaultBindingWidth" Hidden="true" />
+      <Field Name="DefaultBorderFabricStyle" Hidden="true" />
+      <Field Name="DefaultBorderWidth" Hidden="true" />
+      <Field Name="DefaultHasBacking" Hidden="true" />
+      <Field Name="DefaultHeight" Hidden="true" />
+      <Field Name="DefaultTrimTriangles" Hidden="true" />
+      <Field Name="DefaultWidth" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Method Name="GetBoolean" Hidden="true" />
+      <Method Name="GetDimension" Hidden="true" />
+      <Method Name="GetFabricStyle" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="KitSpecification" Hidden="true" />
+      <Field Name="m_backingFabricStyle" Hidden="true" />
+      <Field Name="m_bindingFabricStyle" Hidden="true" />
+      <Field Name="m_bindingWidth" Hidden="true" />
+      <Field Name="m_borderFabricStyle" Hidden="true" />
+      <Field Name="m_borderWidth" Hidden="true" />
+      <Field Name="m_hasBacking" Hidden="true" />
+      <Field Name="m_height" Hidden="true" />
+      <Field Name="m_trimTriangles" Hidden="true" />
+      <Field Name="m_width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BQIAAABABkBBAAYDoABgQEAAAAJAAISIABAAABCKIJA=</HashCode>
+      <FileName>Design\Core\KitSpecification.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BackingFabricStyle" />
+      <Property Name="BindingFabricStyle" />
+      <Property Name="BorderFabricStyle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitBuildStep">
+    <Position X="3.5" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="GetMaximumBuildItemWidth" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="KitBuildStep" Hidden="true" />
+      <Field Name="m_consumes" Hidden="true" />
+      <Field Name="m_description" Hidden="true" />
+      <Field Name="m_produces" Hidden="true" />
+      <Field Name="m_stepNumber" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAYACAAAAEAgBAAAAAAAAAAAEAAAAKAAAAAAAABAABA=</HashCode>
+      <FileName>Design\Core\KitBuildStep.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Consumes" />
+      <Property Name="Produces" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitPart">
+    <Position X="3.25" Y="6.25" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="KitPart" Hidden="true" />
+      <Field Name="m_areaSize" Hidden="true" />
+      <Field Name="m_color" Hidden="true" />
+      <Field Name="m_id" Hidden="true" />
+      <Field Name="m_quantity" Hidden="true" />
+      <Field Name="m_sku" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAABAAQAAAAQAAAAAAAAAAAAIQAEAAAgAgAQBA=</HashCode>
+      <FileName>Design\Core\KitPart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Primitives.FabricStyle" Collapsed="true">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAQAgACAIgAAAAAAAIAAEAAAgAAABzA=</HashCode>
+      <FileName>Design\Primitives\FabricStyle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitBuildItem">
+    <Position X="7" Y="8.75" Width="2.25" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="CreateImage" Hidden="true" />
+      <Field Name="DefaultDimension" Hidden="true" />
+      <Method Name="GetDimension" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="KitBuildItem" Hidden="true" />
+      <Field Name="m_area" Hidden="true" />
+      <Field Name="m_buildItemSubtype" Hidden="true" />
+      <Field Name="m_buildItemType" Hidden="true" />
+      <Field Name="m_fabricStyles" Hidden="true" />
+      <Field Name="m_id" Hidden="true" />
+      <Field Name="m_partId" Hidden="true" />
+      <Field Name="m_quantity" Hidden="true" />
+      <Field Name="m_type" Hidden="true" />
+    </Members>
+    <AssociationLine Name="FabricStyles" Type="RichTodd.QuiltSystem.Design.Primitives.FabricStyle" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="9.438" />
+        <Point X="9.75" Y="9.438" />
+        <Point X="9.75" Y="4.562" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BQICIBAAAAEAAAQEAAAAAAAABAAACMQAAQwAhQAAQBA=</HashCode>
+      <FileName>Design\Core\KitBuildItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="FabricStyles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitBuildItemNode" Collapsed="true">
+    <Position X="6.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAJAgAAAAAAAAABA=</HashCode>
+      <FileName>Design\Core\KitBuildItemNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.KitBuildItemPattern" Collapsed="true">
+    <Position X="8.5" Y="12" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAEAAJAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Core\KitBuildItemPattern.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_pattern" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Core.Pattern" Collapsed="true">
+    <Position X="12.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAABAAAACAAAAAAAABAAAAAAIAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Core\Pattern.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Node" Collapsed="true">
+    <Position X="3.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAhAAAAAAABQAAIEEIAAAAAAEQAAAoAKBAMAAIAEABA=</HashCode>
+      <FileName>Design\Nodes\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.LayoutNode" Collapsed="true">
+    <Position X="5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAEAAAAAACAAIBAAAAAAI=</HashCode>
+      <FileName>Design\Nodes\LayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.ShapeNode" Collapsed="true">
+    <Position X="2.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAAAAAAAAAAIACAAIAAAAAAAA=</HashCode>
+      <FileName>Design\Nodes\ShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.RectangleShapeNode" Collapsed="true">
+    <Position X="1.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Nodes\Standard\RectangleShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.TriangleShapeNode" Collapsed="true">
+    <Position X="1.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Nodes\Standard\TriangleShapeNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.BorderLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAMAAAgAEAAAAIAAoCCAAABAAACABI=</HashCode>
+      <FileName>Design\Nodes\Standard\BorderLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.FlyingGooseLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\FlyingGooseLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.GridLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAMAAAAAABAggFABQAAAAoQACACAAEAAAhI=</HashCode>
+      <FileName>Design\Nodes\Standard\GridLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.HalfSquareTriangleLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\HalfSquareTriangleLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.PageLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAABAAAgAEAAAAAAAoCAAAAAAAAAAhI=</HashCode>
+      <FileName>Design\Nodes\Standard\PageLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.RectangleOnPointLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\RectangleOnPointLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Nodes.Standard.SplitTriangleLayoutNode" Collapsed="true">
+    <Position X="6.5" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAoAAAAAAAAAAABI=</HashCode>
+      <FileName>Design\Nodes\Standard\SplitTriangleLayoutNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

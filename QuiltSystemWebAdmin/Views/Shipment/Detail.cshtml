@@ -1,0 +1,173 @@
+﻿@model Shipment
+@{
+    ViewBag.Title = "Shipment " + Model.ShipmentNumber;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Shipments", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "Shipment", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-12">
+            @if (Model.EnableEdit)
+            {
+                @Html.BootstrapSubmitButton("Edit", Actions.Update)
+            }
+            @if (Model.EnablePost)
+            {
+                @Html.BootstrapSubmitButton("Post", Actions.Post)
+            }
+            @if (Model.EnableProcess)
+            {
+                @Html.BootstrapSubmitButton("Process", Actions.Process)
+            }
+            @if (Model.EnableCancel)
+            {
+                @Html.BootstrapSubmitButton("Cancel", Actions.Cancel)
+            }
+        </div>
+    </div>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.ShipmentId)
+        @Html.BootstrapDisplay(m => m.ShipmentNumber)
+        @Html.BootstrapDisplay(m => m.ShipToAddress)
+        @Html.BootstrapDisplay(m => m.ShipmentStatus)
+        @Html.BootstrapDisplay(m => m.StatusDateTime)
+        @Html.BootstrapDisplay(m => m.ShipmentDateTime)
+        @Html.BootstrapDisplay(m => m.ShippingVendorId)
+        @Html.BootstrapDisplay(m => m.TrackingCode)
+    }
+    <div class="card mt-3">
+        <h5 class="card-header">Shipment Items <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target=".rowComponent">Show Components</button></h5>
+        <table class="card-body mb-0 @Css.DetailTable">
+            <thead class="@Css.DetailTableHead">
+                <tr>
+                    <th>ID</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Consumable Reference</th>
+                    <th>Preview</th>
+                </tr>
+            </thead>
+            <tbody class="@Css.DetailTableBody">
+                @foreach (var shipmentFulfillable in Model.ShipmentFulfillables)
+                {
+                    <tr class="@Css.DetailTableRowHeading">
+                        <td colspan="5">@shipmentFulfillable.FulfillableName @Html.BootstrapActionLink("View", "Index", "Fulfillable", new { id = shipmentFulfillable.MFulfillable.FulfillableId })</td>
+                    </tr>
+                    var currentShipmentRequestId = 0L;
+                    var currentShipmentRequestNumber = "";
+                    foreach (var shipmentFulfillableItem in shipmentFulfillable.ShipmentFulfillableItems)
+                    {
+                        if (shipmentFulfillableItem.MShipmentItem.ShipmentRequestId != currentShipmentRequestId)
+                        {
+                            currentShipmentRequestId = shipmentFulfillableItem.MShipmentItem.ShipmentRequestId;
+                            currentShipmentRequestNumber = shipmentFulfillableItem.MShipmentItem.ShipmentRequestNumber;
+                            <tr class="@Css.DetailTableRowHeading">
+                                <td colspan="5">Shipment Request @currentShipmentRequestNumber @Html.BootstrapActionLink("View", "Index", "ShipmentRequest", new { id = currentShipmentRequestId })</td>
+                            </tr>
+                        }
+                        <tr class="@Css.DetailTableRow">
+                            <td>@Html.DisplayFor(m => shipmentFulfillableItem.Id)</td>
+                            <td>@Html.DisplayFor(m => shipmentFulfillableItem.Quantity)</td>
+                            <td class="text-nowrap">@Html.DisplayForMultilineText(m => shipmentFulfillableItem.Description)</td>
+                            <td>@Html.DisplayFor(m => shipmentFulfillableItem.ConsumableReference)</td>
+                            <td><img src="@Url.ActionLink("FulfillableItem", "Thumbnail", new { id = shipmentFulfillableItem.FulfillableItemReference, size = 125 })" width="125" height="125" /></td>
+                        </tr>
+                        if (Is.Populated(shipmentFulfillableItem.FulfillableItemComponents))
+                        {
+                            <tr class="rowComponent collapse @Css.DetailTableRowSublistHeading">
+                                <td colspan="5"><strong>Components</strong></td>
+                            </tr>
+                            foreach (var fulfillableItemComponent in shipmentFulfillableItem.FulfillableItemComponents)
+                            {
+                                <tr class="rowComponent collapse @Css.DetailTableRowSublist">
+                                    <td>@Html.DisplayFor(m => fulfillableItemComponent.Id)</td>
+                                    <td class="text-nowrap">
+                                        @Html.DisplayFor(m => fulfillableItemComponent.TotalQuantity)
+                                        @if (fulfillableItemComponent.Quantity != fulfillableItemComponent.TotalQuantity)
+                                        {
+                                            @:(@Html.DisplayFor(m => fulfillableItemComponent.Quantity)
+                                            @:per unit)
+                                        }
+                                    </td>
+                                    <td class="text-nowrap">@Html.DisplayForMultilineText(m => fulfillableItemComponent.Description)</td>
+                                    <td>@Html.DisplayFor(m => fulfillableItemComponent.ConsumableReference)</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @if (Is.Populated(Model.Transactions))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Transactions <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#transactionCard">Show</button></h5>
+            <div class="collapse" id="transactionCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Unit of Work</th>
+                            <th>Transaction Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var transaction in Model.Transactions)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => transaction.Id)</td>
+                                <td class="text-nowrap">@Html.DisplayForMultilineText(m => transaction.Description)</td>
+                                <td>@Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })</td>
+                                <td>@Html.DisplayFor(m => transaction.TransactionDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Events))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Events <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#eventCard">Show</button></h5>
+            <div class="collapse" id="eventCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Event Type</th>
+                            <th>Event Date/TIme</th>
+                            <th>Processing Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Unif of Work</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var _event in Model.Events)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => _event.Id)</td>
+                                <td>@Html.DisplayFor(m => _event.EventTypeCode)</td>
+                                <td>@Html.DisplayFor(m => _event.EventDateTime)</td>
+                                <td>@Html.DisplayFor(m => _event.ProcessingStatusCode)</td>
+                                <td>@Html.DisplayFor(m => _event.StatusDateTime)</td>
+                                <td>@Html.ActionLink(_event.UnitOfWork, "Index", "Event", new { unitOfWork = _event.UnitOfWork })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @Html.HiddenFor(m => m.ShipmentId)
+}

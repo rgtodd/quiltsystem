@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+@Html.BootstrapValidationSummary()
+<h4>Use Your Quilt-A-GoGo Account</h4>
+<div asp-validation-summary="All" class="text-danger"></div>
+@using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, false, new { id = "frmMain", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Email)
+        @Html.BootstrapInput(m => m.Password)
+        @Html.BootstrapInput(m => m.IsPersistent)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Log in", Actions.LogIn)
+        }
+    }
+}
+@if (Html.PublicRegistrationEnabled())
+{
+    <p>
+        @Html.ActionLink("Register as a new user", "Register")
+    </p>
+}
+<p>
+    @Html.ActionLink("Forgot your password?", "ForgotPassword")
+</p>

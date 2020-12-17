@@ -1,0 +1,27 @@
+﻿@model CartEditShippingAddressModel
+@{
+    ViewBag.Title = "Update Shipping Information";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@Html.BootstrapValidationSummary()
+@using (Html.BeginForm("Shipping", "Cart", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Name)
+        @Html.BootstrapInput(m => m.AddressLine1)
+        @Html.BootstrapInput(m => m.AddressLine2)
+        @Html.BootstrapInput(m => m.City)
+        @Html.BootstrapInput(m => m.StateCode, Model.StateCodes)
+        @Html.BootstrapInput(m => m.PostalCode)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Back", Actions.Back, isCancel: true)
+            @Html.BootstrapSubmitButton("Continue", Actions.Continue)
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿@model ReturnRequestEditModel
+@{
+    ViewBag.Title = "Create Return Authorization - Order " + Model.OrderNumber;
+}
+@Html.BootstrapValidationSummary()
+@*@{Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });}*@
+<h2>Specify the items you are returning</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.ReturnTypeName, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.ReturnTypeName)
+            </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.ReasonTypeName, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.ReasonTypeName)
+            </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.Notes, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.Notes)
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("ReturnEditItems", "Return", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    for (int idx = 0; idx < Model.Items.Count; ++idx)
+    {
+        @await Html.PartialAsync("_OrderItemEdit", Model.Items[idx]) @*, new ViewDataDictionary() { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = string.Format("Items[{0}]", idx) } })*@
+    }
+    @Html.HiddenFor(m => m.OrderReturnRequestId)
+    @Html.HiddenFor(m => m.OrderId)
+    @Html.HiddenFor(m => m.ReturnTypeCode)
+    @Html.HiddenFor(m => m.ReasonTypeCode)
+    @Html.HiddenFor(m => m.Notes)
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Back", Actions.Back, isCancel: true)
+            @Html.BootstrapSubmitButton("Continue", Actions.Continue)
+        }
+    }
+}

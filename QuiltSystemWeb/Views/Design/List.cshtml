@@ -1,0 +1,94 @@
+﻿@model DesignSummaryListModel
+@{
+    ViewBag.Title = "Designs";
+    var heading = new DesignSummaryModel();
+}
+@using (Html.ListBeginForm("ListSubmit", "Design", FormMethod.Post, null))
+{
+    <div class="header">
+        <h5 class="header__title font-weight-bold">
+            @ViewBag.Title
+            @if (Model.HasDeletedDesigns)
+            {
+                @:&nbsp;&nbsp;
+                @Html.BootstrapSubmitButton("Undelete", Actions.Undelete, isHeader: true)
+            }
+        </h5>
+    </div>
+    <div class="list-grid row">
+        <div class="col-6 col-md-3 col-xl-2">
+            <div class="list-grid-item list-grid__item">
+                <div class="list-grid-item__body">
+                    <div class="list-grid-item__action-link">
+                        <button type="submit" name="action~new" class="list-grid-item__action-link-button"><i class="material-icons add"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (var item in Model.DesignSummaries)
+        {
+            <div class="col-6 col-md-3 col-xl-2">
+                <div class="list-grid-item list-grid__item" tabindex="0">
+                    <div class="list-grid-item__body">
+                        <img class="list-grid-item__image" src="@Url.Content("~/Thumbnail/Design/" + item.DesignId + "?size=150")" />
+                        <div class="list-grid-item__overlay">
+                            <div class="list-grid-item__action-link">
+                                <a href="@Url.Action("Index", new { id = item.DesignId })"><i class="material-icons mode-edit"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-grid-item__footer">
+                        @*@Html.ActionLink("Edit", "Index", new { id = item.DesignId })
+                            &#x2022;
+                            @Html.ActionLink("Kit", "Create", "Kit", new { id = item.DesignId }, null)
+                            &#x2022;*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DesignId })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clearfix"></div>
+    <nav>@Html.PagedListPager(Model.DesignSummaries, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</nav>
+}
+<div id="dlgRename" title="Rename Design" style="display:none">
+    @using (Html.BeginForm("RenameDesign", "Design", FormMethod.Post, new { id = "frmRename" }))
+    {
+        using (Html.BootstrapBeginForm().ForInput())
+        {
+            @Html.BootstrapInput(m => m.RenameDesign.NewDesignName)
+        }
+        @Html.HiddenFor(m => m.RenameDesign.DesignId)
+    }
+</div>
+@section scripts {
+    <script type="text/javascript">
+
+        $(function () {
+
+            listGridItem_initialize();
+
+            $("#dlgRename").dialog({
+                autoOpen: false,
+                closeText: "",
+                modal: true,
+                width: 400,
+                buttons: [
+                    { text: "Rename", click: function () { $("#frmRename").submit(); } },
+                    { text: "Cancel", click: function () { $(this).dialog("close"); } }
+                ]
+            });
+
+            $(".btn-rename").on("click", rename_project);
+        })
+
+        function rename_project(event) {
+            var designId = $(this).attr("data-project-id");
+            var projectName = $(this).attr("data-project-name");
+
+            $("#RenameDesign_DesignId").val(designId);
+            $("#RenameDesign_NewDesignName").val(projectName);
+            $("#dlgRename").dialog("open");
+        }
+    </script>
+}

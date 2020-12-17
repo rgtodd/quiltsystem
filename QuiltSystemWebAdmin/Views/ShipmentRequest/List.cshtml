@@ -1,0 +1,56 @@
+﻿@model ShipmentRequestList
+@{
+    ViewBag.Title = "Shipment Requests";
+    var heading = ModelMetadata<ShipmentRequestListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "ShipmentRequest", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.ShipmentRequestStatus, Model.Filter.ShipmentRequestStatusList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ShipmentRequestId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ShipmentRequestNumber))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableName))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FulfillableReference))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ShipmentRequestStatus))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.CreateDateTime))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: item.ShipmentRequestId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.ShipmentRequestId)</td>
+                    <td>@Html.DisplayFor(m => item.ShipmentRequestNumber)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableId)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableName)</td>
+                    <td>@Html.DisplayFor(m => item.FulfillableReference)</td>
+                    <td>@Html.DisplayFor(m => item.ShipmentRequestStatus)</td>
+                    <td>@Html.DisplayFor(m => item.CreateDateTime)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

@@ -1,0 +1,107 @@
+﻿@model User
+@{
+    ViewBag.Title = "User " + Model.UserId;
+    var orderHeading = new UserOrder(null, null);
+    var paymentHeading = new UserSquarePayment(null, null);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Users", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-12">
+            @if (Model.SquareCustomerId != null)
+            {
+                @Html.BootstrapActionLink("Square Customer", "Index", "SquareCustomer", new { id = Model.SquareCustomerId.Value })
+            }
+        </div>
+    </div>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.UserId)
+        @Html.BootstrapDisplay(m => m.UserName)
+        @Html.BootstrapDisplay(m => m.Email)
+        @Html.BootstrapDisplay(m => m.EmailConfirmed)
+        @Html.BootstrapDisplay(m => m.PhoneNumber)
+        @Html.BootstrapDisplay(m => m.PhoneNumberConfirmed)
+        @Html.BootstrapDisplay(m => m.TwoFactorEnabled)
+        @Html.BootstrapDisplay(m => m.LockedEnabled)
+        @Html.BootstrapDisplay(m => m.AccessFailedCount)
+        @Html.BootstrapDisplay(m => m.RoleList)
+        @Html.BootstrapDisplay(m => m.LoginProviderList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapActionLink("Edit Roles", "EditRoles", "User", new { id = Model.UserId })
+            @Html.BootstrapActionLink("Send Message", "Create", "Message", new { userId = Model.UserId })
+        }
+    }
+    @if (Is.Populated(Model.Orders))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Orders <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#orderCard">Show</button></h5>
+            <div class="collapse" id="orderCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>@Html.LabelFor(m => orderHeading.OrderNumber)</th>
+                            <th>@Html.LabelFor(m => orderHeading.OrderDateTime)</th>
+                            <th>@Html.LabelFor(m => orderHeading.OrderStatus)</th>
+                            <th>@Html.LabelFor(m => orderHeading.UpdateDateTime)</th>
+                            <th>@Html.LabelFor(m => orderHeading.TotalAmount)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "Order", new { id = order.OrderId })</td>
+                                <td>@Html.DisplayFor(m => order.OrderNumber)</td>
+                                <td>@Html.DisplayFor(m => order.OrderDateTime)</td>
+                                <td>@Html.DisplayFor(m => order.OrderStatus)</td>
+                                <td>@Html.DisplayFor(m => order.UpdateDateTime)</td>
+                                <td>@Html.DisplayFor(m => order.TotalAmount)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.SquarePayments))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Payments <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#paymentCard">Show</button></h5>
+            <div class="collapse" id="paymentCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>@Html.LabelFor(m => paymentHeading.PaymentAmount)</th>
+                            <th>@Html.LabelFor(m => paymentHeading.RefundAmount)</th>
+                            <th>@Html.LabelFor(m => paymentHeading.ProcessingFeeAmount)</th>
+                            <th>@Html.LabelFor(m => paymentHeading.UpdateDateTime)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var payment in Model.SquarePayments)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.BootstrapActionLink("View", "Index", "SquarePayment", new { id = payment.SquarePaymentId })</td>
+                                <td>@Html.DisplayFor(m => payment.PaymentAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.RefundAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.ProcessingFeeAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.UpdateDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

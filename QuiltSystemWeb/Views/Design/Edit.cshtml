@@ -1,0 +1,104 @@
+﻿@model DesignDetailModel
+@{
+    ViewBag.Title = "Edit Design";
+    ViewBag.ReturnUrl = Url.Action("Index", "Design", new { id = "" });
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+        &nbsp;&nbsp;
+        @Html.BootstrapButton("Done", "btnDone", true, false, dataUrl: (string)ViewBag.ReturnUrl)
+        @Html.BootstrapButton("Create Kit", "btnKit", true, false, dataUrl: (string)@Url.Action("Index", "Kit", new { designId = "GUID" }))
+        @Html.BootstrapButton("Undo", "btnUndo", true, true)
+        <span id="iconRefresh" class="glyphicon glyphicon-refresh design-container__toolbar-item-spin-icon" aria-hidden="true"></span>
+    </h5>
+</div>
+<div class="design-container select">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <div class="design-container__toolbar">
+                <div id="divProjectLayouts" class="design-container__toolbar-item">
+                    <div class="design-container__toolbar-item-label">Layout</div>
+                    <!-- div class='design-container__toolbar-item-layout -->
+                </div>
+                <div class="design-container__toolbar-item">
+                    <div class="design-container__toolbar-item-label">Rows</div>
+                    <select id="lstLayoutRows" class="form-control design-container__toolbar-item-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="design-container__toolbar-item">
+                    <div class="design-container__toolbar-item-label">Columns</div>
+                    <select id="lstLayoutColumns" class="form-control design-container__toolbar-item-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div id="divProjectBlocks" class="design-container__toolbar-item">
+                    <div class="form-control-static design-container__toolbar-item-label">Blocks</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="design_container__preview">
+        <canvas class="design_container__preview-canvas" width="100" height="100"></canvas>
+    </div>
+    <div class="design-container__tooltrays">
+        <div id="divLayouts" class="tooltray tooltray--hidden"></div>
+        <div id="divBlocks" class="tooltray tooltray--hidden block-list"></div>
+        <div id="divColors" class="tooltray tooltray--hidden color-list">
+            <div id="divColorsHeader" class="form-inline">
+                <label class="form-control-static">Manufacturer:</label>
+                <select id="selectManufacturer" class="form-control"></select>
+                <label class="form-control-static">Collection:</label>
+                <select id="selectCollection" class="form-control"></select>
+            </div>
+            <div id="divColorsBody"></div>
+        </div>
+    </div>
+</div>
+<div id="dlgError" title="Error" style="display:none">
+    An error occurred.
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $("#dlgError").dialog({
+            autoOpen: false,
+            closeText: "",
+            modal: true,
+            width: 400,
+            buttons: [
+                { text: "OK", click: function () { $(this).dialog("close"); } }
+            ]
+        });
+
+        $(function () {
+
+            blockList_initialize();
+            colorList_initialize();
+            layoutList_initialize();
+            select_initialize();
+            tooltray_initialize();
+            design_initialize();
+
+            design_loadDesign("@Model.DesignId");
+        });
+    </script>
+}

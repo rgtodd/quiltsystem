@@ -1,0 +1,60 @@
+﻿@model Alert
+@{
+    ViewBag.Title = "Alert " + Model.AlertId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Alerts", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "Alert", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-12">
+            @if (Model.CompletedDateTime == null)
+            {
+                @Html.BootstrapSubmitButton("Mark Complete", Actions.MarkComplete)
+            }
+        </div>
+    </div>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.AlertId)
+        @Html.BootstrapDisplay(m => m.AlertType)
+        @Html.BootstrapDisplay(m => m.AlertDateTime)
+        @Html.BootstrapDisplay(m => m.CompletedDateTime)
+        @Html.BootstrapDisplay(m => m.Description)
+        @Html.BootstrapDisplay(m => m.Exception)
+        @Html.BootstrapDisplay(m => m.UserId)
+        @Html.BootstrapDisplay(m => m.UserEmail)
+        @Html.BootstrapDisplay(m => m.TopicId)
+        @Html.BootstrapDisplay(m => m.TopicReference)
+        if (Model.OrderId != null)
+        {
+            @Html.BootstrapDisplay(m => m.OrderId, linkText: "View", link: Url.Action("Index", "Order", new { id = Model.UserId }))
+        }
+        if (Model.ReturnId != null)
+        {
+            @Html.BootstrapDisplay(m => m.ReturnId, linkText: "View", link: Url.Action("Index", "Return", new { id = Model.ReturnId }))
+        }
+        if (Model.ReturnRequestId != null)
+        {
+            @Html.BootstrapDisplay(m => m.ReturnRequestId, linkText: "View", link: Url.Action("Index", "ReturnRequest", new { id = Model.ReturnRequestId }))
+        }
+        if (Model.ShipmentId != null)
+        {
+            @Html.BootstrapDisplay(m => m.ShipmentId, linkText: "View", link: Url.Action("Index", "Shipment", new { id = Model.ShipmentId }))
+        }
+        if (Model.ShipmentRequestId != null)
+        {
+            @Html.BootstrapDisplay(m => m.ShipmentRequestId, linkText: "View", link: Url.Action("Index", "ShipmentRequest", new { id = Model.ShipmentRequestId }))
+        }
+        if (Model.UserId != null)
+        {
+            @Html.BootstrapDisplay(m => m.UserId, linkText: "View", link: Url.Action("Index", "User", new { id = Model.UserId }))
+        }
+    }
+    @Html.HiddenFor(m => m.AlertId)
+}

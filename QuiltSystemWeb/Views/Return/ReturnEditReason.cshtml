@@ -1,0 +1,47 @@
+﻿@model ReturnRequestEditModel
+@{
+    ViewBag.Title = "Create Return Authorization - Order " + Model.OrderNumber;
+}
+@Html.BootstrapValidationSummary()
+@*@{Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });}*@
+@using (Html.BeginForm("ReturnEditReason", "Return", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.ReasonTypeCode, Model.ReasonTypes)
+        <div class="form-group">
+            @Html.LabelFor(m => m.ReturnTypeCode, "Do you need a replacement or refund?", new { @class = "col-sm-4 control-label" })
+            <div class="col-sm-4">
+                <div class="radio">
+                    <label>
+                        @Html.RadioButtonFor(m => m.ReturnTypeCode, "20") Send Replacement
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        @Html.RadioButtonFor(m => m.ReturnTypeCode, "10") Refund
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Notes, "Do you have additional notes or comments?", new { @class = "col-sm-4 control-label" })
+            <div class="col-sm-4">
+                @Html.TextAreaFor(m => m.Notes, new { @class = "form-control" })
+            </div>
+        </div>
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Back", action: Actions.Back, isCancel: true)
+            @Html.BootstrapSubmitButton("Continue", action: Actions.Continue)
+        }
+    }
+    @Html.HiddenFor(m => m.OrderReturnRequestId)
+    @Html.HiddenFor(m => m.OrderId)
+    for (int idx = 0; idx < Model.Items.Count; ++idx)
+    {
+        @Html.HiddenFor(m => m.Items[idx].OrderReturnRequestItemId)
+        @Html.HiddenFor(m => m.Items[idx].OrderItem.OrderItemId)
+        @Html.HiddenFor(m => m.Items[idx].Quantity)
+    }
+}

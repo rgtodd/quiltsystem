@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentHalfSquareTriangle" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="11.5" Width="2.75" />
+    <Members>
+      <Method Name="BuildComponentHalfSquareTriangle" Hidden="true" />
+      <Field Name="m_area" Hidden="true" />
+      <Field Name="m_fabricStyles" Hidden="true" />
+      <Field Name="m_trim" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAEAAAAAgEAAAAAAAAAAAgABQAAAAA=</HashCode>
+      <FileName>Build\BuildComponentHalfSquareTriangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentQuilt" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.75" />
+    <Members>
+      <Method Name="BuildComponentQuilt" Hidden="true" />
+      <Field Name="m_design" Hidden="true" />
+      <Field Name="m_key" Hidden="true" />
+      <Field Name="m_kitSpecification" Hidden="true" />
+      <Field Name="m_pageLayoutNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAiCAAEAAAAAAEAAAAAAQAAAAAAgQAoAAA=</HashCode>
+      <FileName>Build\BuildComponentQuilt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentRectangle" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="9.25" Width="2" />
+    <Members>
+      <Method Name="BuildComponentRectangle" Hidden="true" />
+      <Field Name="m_area" Hidden="true" />
+      <Field Name="m_fabricStyles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAEAAAAAAAAAAAgABQAAAAA=</HashCode>
+      <FileName>Build\BuildComponentRectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentYardage" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="13.75" Width="2" />
+    <Members>
+      <Method Name="BuildComponentYardage" Hidden="true" />
+      <Field Name="m_area" Hidden="true" />
+      <Field Name="m_areaSize" Hidden="true" />
+      <Field Name="m_fabricStyles" Hidden="true" />
+      <Field Name="m_regions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQIAAAAwAAAEQAAAAAEAAAAAAAAAAAgABQAAAAA=</HashCode>
+      <FileName>Build\BuildComponentYardage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Regions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentYardageRegion">
+    <Position X="7" Y="13.75" Width="2.5" />
+    <Members>
+      <Field Name="m_height" Hidden="true" />
+      <Field Name="m_left" Hidden="true" />
+      <Field Name="m_top" Hidden="true" />
+      <Field Name="m_width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAAAAAABAAAAAEAAAAAIAACACAAAAAAAAAI=</HashCode>
+      <FileName>Build\BuildComponentYardageRegion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.Builder">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="Create" Hidden="true" />
+      <Field Name="m_allComponents" Hidden="true" />
+      <Field Name="m_allSteps" Hidden="true" />
+      <Field Name="m_design" Hidden="true" />
+      <Field Name="m_kitSpecification" Hidden="true" />
+      <Field Name="m_pendingComponents" Hidden="true" />
+      <Field Name="m_pendingSteps" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAKAQAAAAAQSCAAAAAQAEAAAAACAAAgAAA=</HashCode>
+      <FileName>Build\Builder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildFabricStyle">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="BuildFabricStyle" Hidden="true" />
+      <Field Name="m_color" Hidden="true" />
+      <Field Name="m_sku" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAEAAAgAgAAAA=</HashCode>
+      <FileName>Build\BuildFabricStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildPlan">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <AssociationLine Name="HalfSquareTriangles" Type="RichTodd.QuiltSystem.Build.BuildComponentHalfSquareTriangle" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.125" Y="4.118" />
+        <Point X="1.125" Y="12.501" />
+        <Point X="3.75" Y="12.501" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Rectangles" Type="RichTodd.QuiltSystem.Build.BuildComponentRectangle" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.438" Y="4.118" />
+        <Point X="1.438" Y="10.251" />
+        <Point X="3.75" Y="10.251" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Yardages" Type="RichTodd.QuiltSystem.Build.BuildComponentYardage" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="0.812" Y="4.118" />
+        <Point X="0.812" Y="14.847" />
+        <Point X="3.75" Y="14.847" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Blocks" Type="RichTodd.QuiltSystem.Build.BuildComponentLayout" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="3.875" />
+        <Point X="2.375" Y="3.875" />
+        <Point X="2.375" Y="5.097" />
+        <Point X="3.75" Y="5.097" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAIBEAAAAAAAAAACAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Build\BuildPlan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Quilt" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="HalfSquareTriangles" />
+      <Property Name="Rectangles" />
+      <Property Name="Yardages" />
+      <Property Name="Blocks" />
+      <Property Name="BuildSteps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildStep">
+    <Position X="11" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="AddInput" Hidden="true" />
+      <Method Name="AddOutput" Hidden="true" />
+      <Method Name="BuildStep" Hidden="true" />
+      <Method Name="ComputeInputs" Hidden="true" />
+      <Field Name="m_consumes" Hidden="true" />
+      <Field Name="m_produces" Hidden="true" />
+      <Field Name="m_producesStyleKey" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAEAhBACAAAAAAAAAEAAAACAAAgAAAAAAQAA=</HashCode>
+      <FileName>Build\BuildStep.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildStepCut">
+    <Position X="9.75" Y="6.25" Width="1.5" />
+    <Members>
+      <Method Name="BuildStepCut" Hidden="true" />
+      <Method Name="ComputeInputs" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="RichTodd.QuiltSystem.Build.BuildStepCut.CutShape" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\BuildStepCut.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Build\BuildStepCut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildStepHalfSquareTriangle">
+    <Position X="6.75" Y="6.25" Width="2.25" />
+    <Members>
+      <Method Name="BuildStepHalfSquareTriangle" Hidden="true" />
+      <Method Name="ComputeInputs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Build\BuildStepHalfSquareTriangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.CutPlan">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="m_cutRegions" Hidden="true" />
+      <Field Name="m_cutStocks" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAEAEAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Build\CutPlan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="CutRegions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.CutPlanner">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="GetLargestShape" Hidden="true" />
+      <Method Name="GetNormalizedRegionDimension" Hidden="true" />
+      <Method Name="GetNormalizedShapeDimension" Hidden="true" />
+      <Method Name="GetSmallestContainingCutRegion" Hidden="true" />
+      <Method Name="Plan" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAQAAAAAAAAAAAQABAQAAAAAAAAA=</HashCode>
+      <FileName>Build\CutPlanner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.CutRegion">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Contains" Hidden="true" />
+      <Method Name="CutHorizontal" Hidden="true" />
+      <Method Name="CutRegion" Hidden="true" />
+      <Method Name="CutVertical" Hidden="true" />
+      <Field Name="m_height" Hidden="true" />
+      <Field Name="m_left" Hidden="true" />
+      <Field Name="m_top" Hidden="true" />
+      <Field Name="m_width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIIABAAAAAABQAAACEAIAAIIAACACAAAAQAUAAI=</HashCode>
+      <FileName>Build\CutRegion.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CutShape" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildStepAssembleLayout">
+    <Position X="12" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="AddLayoutNodeComponents" Hidden="true" />
+      <Method Name="AddNodeComponents" Hidden="true" />
+      <Method Name="AddRectangleComponent" Hidden="true" />
+      <Method Name="AddShapeNodeComponent" Hidden="true" />
+      <Method Name="BuildStepAssembleLayout" Hidden="true" />
+      <Method Name="ComputeInputs" Hidden="true" />
+      <Method Name="CreateBuildFabricStyle" Hidden="true" />
+      <Method Name="FindHalfSquareTriangle" Hidden="true" />
+      <Method Name="FindLayout" Hidden="true" />
+      <Method Name="FindRectangle" Hidden="true" />
+      <Method Name="IsHalfSquareTriangle" Hidden="true" />
+      <Method Name="IsTriangleNode" Hidden="true" />
+      <Field Name="s_seamAllowance" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="RichTodd.QuiltSystem.Build.BuildStepAssembleLayout.ComponentPosition" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Build\BuildStepAssembleLayout.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BABgAAAAAAAAAAEgAAAAEACAAEAABAEEAgAAAAAAAAA=</HashCode>
+      <FileName>Build\BuildStepAssembleLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildStepAssembleQuilt">
+    <Position X="14.75" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="AddLayoutNodeComponents" Hidden="true" />
+      <Method Name="AddNodeComponents" Hidden="true" />
+      <Method Name="AddRectangleComponent" Hidden="true" />
+      <Method Name="AddShapeNodeComponent" Hidden="true" />
+      <Method Name="BuildStepAssembleQuilt" Hidden="true" />
+      <Method Name="ComputeInputs" Hidden="true" />
+      <Method Name="CreateBuildFabricStyle" Hidden="true" />
+      <Method Name="FindLayout" Hidden="true" />
+      <Method Name="FindMatchingInput" Hidden="true" />
+      <Method Name="IsHalfSquareTriangle" Hidden="true" />
+      <Method Name="IsTriangleNode" Hidden="true" />
+      <Field Name="s_seamAllowance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BABgAAAAAAAAEAEAAAAAEACAAEAABAAEAgAAAAAAAAA=</HashCode>
+      <FileName>Build\BuildStepAssembleQuilt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Build.BuildComponentLayout">
+    <Position X="3.75" Y="4" Width="2" />
+    <Members>
+      <Method Name="BuildComponentLayout" Hidden="true" />
+      <Field Name="m_key" Hidden="true" />
+      <Field Name="m_layoutNode" Hidden="true" />
+      <Field Name="m_trimTriangles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAgAAAEAEAgIAEAAAIAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Build\BuildComponentLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RichTodd.QuiltSystem.Build.IBuildComponent">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="ConsumedBy" Type="RichTodd.QuiltSystem.Build.IBuildStep" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="2.03" />
+        <Point X="5.458" Y="2.03" />
+        <Point X="5.458" Y="1.603" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ProducedBy" Type="RichTodd.QuiltSystem.Build.IBuildStep" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="2.2" />
+        <Point X="4.219" Y="2.2" />
+        <Point X="4.219" Y="1.603" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="FabricStyles" Type="RichTodd.QuiltSystem.Build.BuildFabricStyle" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="0.875" />
+        <Point X="10.25" Y="0.875" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAgAAEEAAAAAAEAAAAAAAAAAAAAgQAAAAA=</HashCode>
+      <FileName>Build\IBuildComponent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConsumedBy" />
+      <Property Name="ProducedBy" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="FabricStyles" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="RichTodd.QuiltSystem.Build.IBuildStep">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <AssociationLine Name="Consumes" Type="RichTodd.QuiltSystem.Build.IBuildComponent" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="1.123" />
+        <Point X="7.5" Y="1.123" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Produces" Type="RichTodd.QuiltSystem.Build.IBuildComponent" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="0.783" />
+        <Point X="7.5" Y="0.783" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Build\IBuildStep.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Consumes" />
+      <Property Name="Produces" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="RichTodd.QuiltSystem.Build.ICutShape">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Build\ICutShape.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

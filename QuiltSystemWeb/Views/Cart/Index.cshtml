@@ -1,0 +1,72 @@
+﻿@model CartEditModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@Html.BootstrapValidationSummary()
+@using (Html.BeginForm("Index", "Cart", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate", @class = "cart" }))
+{
+    foreach (var item in Model.Items)
+    {
+        var idx = Model.Items.IndexOf(item);
+        <h3 class="cart__heading">@Html.DisplayFor(m => item.Name) (@Html.DisplayFor(m => item.Sku))</h3>
+        <div class="row">
+            <div class="col-sm-7 col-lg-2">
+                <img src="@Url.ActionLink("KitSnapshot", "Thumbnail", new { id = item.OrderableReference, size = 150 })" />
+            </div>
+            <div class="col-sm-5 col-lg-3 order-lg-10">
+                @using (Html.BootstrapBeginForm().ForInput())
+                {
+                    @Html.BootstrapDisplay(m => item.KitPrice)
+                    @Html.BootstrapInput(m => m.Items[idx].Quantity)
+                    @Html.BootstrapDisplay(m => item.TotalPrice)
+                    using (Html.BootstrapBeginFormButtonRow())
+                    {
+                        @Html.BootstrapSubmitButton("Delete", Actions.Delete, item.OrderItemId.ToString())
+                    }
+                }
+            </div>
+            <div class="col-sm-12 col-lg-7">
+                @if (Is.Populated(item.Components))
+                {
+                    <label class="col-form-label">Fabrics</label>
+                    foreach (var component in item.Components)
+                    {
+                        <div class="row no-gutters">
+                            <div class="col-xs-8  col-sm-7"><small>@Html.DisplayFor(m => component.Description) (@Html.DisplayFor(m => component.Sku))</small></div>
+                            <div class="col-xs-4  col-sm-4 text-right"><small>@Html.DisplayFor(m => component.Quantity) @@ @Html.DisplayFor(m => component.UnitPrice)</small></div>
+                            <div class="col-xs-12 col-sm-1 text-right"><small>@Html.DisplayFor(m => component.TotalPrice)</small></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        @Html.HiddenFor(m => m.Items[idx].OrderItemId)
+        @Html.HiddenFor(m => m.Items[idx].OriginalQuantity)
+    }
+    <div class="row cart__subtotals">
+        <div class="col-sm-5 offset-sm-7 col-lg-3 offset-lg-9">
+            @using (Html.BootstrapBeginForm().ForDisplay().SetAlignRight(true))
+            {
+                @Html.BootstrapDisplay(m => m.ItemSubtotalAmount)
+                @Html.BootstrapDisplay(m => m.DiscountAmount)
+                @Html.BootstrapDisplay(m => m.ShippingAmount)
+                @Html.BootstrapDisplay(m => m.SalesTaxAmount, "{0} (" + string.Format("{0:p}", Model.SalesTaxPercent) + ")")
+                @Html.BootstrapDisplay(m => m.TotalAmount)
+            }
+        </div>
+    </div>
+    <div class="cart__navigation">
+        @using (Html.BootstrapBeginForm().ForInput())
+        {
+            using (Html.BootstrapBeginFormButtonRow())
+            {
+                @Html.BootstrapSubmitButton("Continue", Actions.Continue)
+            }
+        }
+    </div>
+}

@@ -1,0 +1,52 @@
+﻿@model OrderVcModel
+@{
+    Layout = null;
+}
+<div class="card return-order-summary">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-3">@Html.LabelFor(m => m.OrderNumber, new { @class = "site-title" }) @Html.DisplayFor(m => m.OrderNumber)</div>
+            <div class="col-sm-3">@Html.LabelFor(m => m.SubmissionDateTime, new { @class = "site-title" }) @Html.DisplayFor(m => m.SubmissionDateTime)</div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-12"><label>Shipping Address</label></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">@Html.DisplayFor(m => m.ShippingName)</div>
+                </div>
+                @foreach (var line in Model.ShippingAddressLines)
+                {
+                    <div class="row">
+                        <div class="col-sm-12">@Html.DisplayFor(m => line)</div>
+                    </div>
+                }
+            </div>
+            <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.ItemSubtotal)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.ItemSubtotal)</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.Shipping)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.Shipping)</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.Discount)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.Discount)</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.TaxableAmount)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.TaxableAmount)</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.SalesTax) (@Html.DisplayFor(m => m.SalesTaxPercent))</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.SalesTax)</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">@Html.LabelFor(m => m.Total)</div>
+                    <div class="col-sm-4">@Html.DisplayFor(m => m.Total)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

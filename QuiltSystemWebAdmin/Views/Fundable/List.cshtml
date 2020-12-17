@@ -1,0 +1,52 @@
+﻿@model FundableList
+@{
+    ViewBag.Title = "Fundables";
+    var heading = ModelMetadata<FundableListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Fundable", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.HasFundsRequired, Model.Filter.HasFundsRequiredList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FundableId))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FundableReference))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FundsRequired))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FundsReceived))</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.BootstrapListActionLink("Detail", "Index", id: item.FundableId)
+                        </td>
+                        <td>@Html.DisplayFor(m => item.FundableId)</td>
+                        <td>@Html.DisplayFor(m => item.FundableReference)</td>
+                        <td>@Html.DisplayFor(m => item.FundsRequired)</td>
+                        <td>@Html.DisplayFor(m => item.FundsReceived)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

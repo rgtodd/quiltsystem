@@ -1,0 +1,23 @@
+﻿@model LoginRegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+@Html.BootstrapValidationSummary()
+@using (Html.BeginForm("Register", "Login", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Email)
+        @Html.BootstrapInput(m => m.Password)
+        @Html.BootstrapInput(m => m.ConfirmPassword)
+        <div class="form-group">
+            <div class="col-sm-12">By clicking Register, you agree to the Quilt-A-GoGo @Html.ActionLink("Terms of Use", "Index", "TermsOfUse") and @Html.ActionLink("Privacy Policy", "Index", "PrivacyPolicy").</div>
+        </div>
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Register", Actions.Register)
+            @Html.BootstrapActionLink("Home", "Index", "Home")
+        }
+    }
+}

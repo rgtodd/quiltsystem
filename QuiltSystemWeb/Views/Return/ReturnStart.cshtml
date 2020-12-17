@@ -1,0 +1,8 @@
+﻿@model ReturnRequestViewModel
+@{
+    ViewBag.Title = "Create Return Authorization - Order " + Model.OrderNumber;
+}
+@*@{Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });}*@
+<p>We're sorry there's a problem with your order!</p>
+<p>@Html.BootstrapActionLink("Contact Us", "Create", "Message", new { orderId = Model.OrderId }) if there a question or problem we can answer.</p>
+<p>@Html.BootstrapActionLink("Begin Return", "ReturnEditReason", "Return", new { id = Model.OrderId }) if you need to return or replace any part of your order.</p>

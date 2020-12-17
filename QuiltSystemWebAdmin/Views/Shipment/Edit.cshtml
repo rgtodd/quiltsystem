@@ -1,0 +1,26 @@
+﻿@model EditShipment
+@{
+    ViewBag.Title = "Edit Shipment";
+}
+@using (Html.BeginForm("Edit", "Shipment", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.ShipmentDate)
+        @Html.BootstrapInput(m => m.TrackingNumber)
+        @Html.BootstrapInput(m => m.ShippingVendorId, Model.ShippingVendors)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Save", Actions.Save)
+        }
+    }
+    @Html.HiddenFor(m => m.ShipmentId)
+    for (int idx = 0; idx < Model.ShipmentItems.Count; ++idx)
+    {
+        @Html.HiddenFor(m => m.ShipmentItems[idx].ShipmentItemId)
+        @Html.HiddenFor(m => m.ShipmentItems[idx].ShipmentRequestItemId)
+        @Html.HiddenFor(m => m.ShipmentItems[idx].FulfillableItemId)
+        @Html.HiddenFor(m => m.ShipmentItems[idx].FulfillableItemReference)
+        @Html.HiddenFor(m => m.ShipmentItems[idx].Quantity)
+    }
+}

@@ -1,0 +1,55 @@
+﻿@model NotificationList
+@{
+    ViewBag.Title = "Notifications";
+    var heading = ModelMetadata<NotificationListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Notification", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.Acknowledged, Model.Filter.AcknowledgedList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+            @Html.BootstrapSubmitButton("Ackowledge All", Actions.Acknowledge)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.NotificationId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.NotificationType))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.CreatedDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UserId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UserEmail))</th>
+                @*<th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.OrderNumber))</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: item.NotificationId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.NotificationId)</td>
+                    <td>@Html.DisplayFor(m => item.NotificationType)</td>
+                    <td>@Html.DisplayFor(m => item.CreatedDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.UserId)</td>
+                    <td>@Html.DisplayFor(m => item.UserEmail)</td>
+                    @*<td>@Html.DisplayFor(m => notification.OrderNumber)</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

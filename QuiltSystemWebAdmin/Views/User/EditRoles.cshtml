@@ -1,0 +1,42 @@
+﻿@model EditUserRoles
+@{
+    ViewBag.Title = "Edit User Roles " + Model.UserId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Users", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.BootstrapBeginForm().ForInput())
+{
+    @Html.BootstrapDisplay(m => m.UserId)
+    @Html.BootstrapDisplay(m => m.Email)
+    <h5>Current Roles</h5>
+    foreach (var role in Model.CurrentRoles)
+    {
+        <div class="form-group row">
+            <div class="@Html.ControlCssClasses()">
+                <div class="form-control-plaintext form-control-sm d-inline-block">
+                    @role (@Html.ActionLink("Remove", "RemoveRole", "User", new { id = Model.UserId, role = role }))
+                </div>
+            </div>
+        </div>
+    }
+    <h5>New Roles</h5>
+    foreach (var role in Model.NewRoles)
+    {
+        <div class="form-group row">
+            <div class="@Html.ControlCssClasses()">
+                <div class="form-control-plaintext form-control-sm d-inline-block">
+                    @role (@Html.ActionLink("Add", "AddRole", "User", new { id = Model.UserId, role = role }))
+                </div>
+            </div>
+        </div>
+    }
+    using (Html.BootstrapBeginFormButtonRow())
+    {
+        @Html.BootstrapActionLink("Return", "Index", "User", new { id = Model.UserId })
+    }
+}

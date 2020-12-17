@@ -1,0 +1,71 @@
+﻿@model LedgerTransaction
+@{
+    ViewBag.Title = "Ledger Transaction " + Model.LedgerTransactionId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.BootstrapBeginForm().ForDisplay())
+{
+    @Html.BootstrapDisplay(m => m.LedgerTransactionId)
+    @Html.BootstrapDisplay(m => m.TransactionDateTime)
+    @Html.BootstrapDisplay(m => m.PostDateTime)
+    @Html.BootstrapDisplay(m => m.Description)
+    @Html.BootstrapDisplay(m => m.UnitOfWork, link: Url.ActionLink("Index", "Transaction", new { unitOfWork = Model.UnitOfWork }))
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Entries</h3>
+    </div>
+    <table class="@Css.DetailTable">
+        <thead class="@Css.DetailTableHead">
+            <tr>
+                <th colspan="3">Debit</th>
+                <th colspan="3">Credit</th>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody class="@Css.DetailTableBody">
+            @{
+                var maxIdx = Math.Max(Model.DebitItems.Count, Model.CreditItems.Count);
+                for (int idx = 0; idx < maxIdx; ++idx)
+                {
+                    <tr>
+                        @if (idx < Model.DebitItems.Count)
+                        {
+                            var entry = Model.DebitItems[idx];
+                            <td>@Html.DisplayFor(m => entry.LedgerAccountNumber)</td>
+                            <td>@Html.DisplayFor(m => entry.LedgerAccountName)</td>
+                            <td class="text-right">@Html.DisplayFor(m => entry.EntryAmount)</td>
+                        }
+                        else
+                        {
+                            <td colspan="3"></td>
+                        }
+                        @if (idx < Model.CreditItems.Count)
+                        {
+                            var entry = Model.CreditItems[idx];
+                            <td>@Html.DisplayFor(m => entry.LedgerAccountNumber)</td>
+                            <td>@Html.DisplayFor(m => entry.LedgerAccountName)</td>
+                            <td class="text-right">@Html.DisplayFor(m => entry.EntryAmount)</td>
+                        }
+                        else
+                        {
+                            <td colspan="3"></td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

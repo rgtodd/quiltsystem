@@ -1,0 +1,43 @@
+﻿@model ReturnRequestViewModel
+@{
+    ViewBag.Title = "Create Return Authorization - Order " + Model.OrderNumber;
+}
+@Html.BootstrapValidationSummary()
+@*@{Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });}*@
+<h2>Your return request authorization is complete</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.ReturnRequestNumber, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.ReturnRequestNumber)
+            </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.ReturnTypeName, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.ReturnTypeName)
+            </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.ReasonTypeName, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.ReasonTypeName)
+            </div>
+            <div class="col-sm-3">
+                @Html.LabelFor(m => m.Notes, new { @class = "site-title" })
+                @Html.DisplayFor(m => m.Notes)
+            </div>
+        </div>
+        @for (int idx = 0; idx < Model.Items.Count; ++idx)
+        {
+            @*@await Html.PartialAsync("_OrderItemDetail", Model.Items[idx], new ViewDataDictionary(ViewData) { TemplateInfo = new TemplateInfo() { HtmlFieldPrefix = string.Format("Items[{0}]", idx) } })*@
+            @await Html.PartialAsync("_OrderItemDetail", Model.Items[idx]);
+        }
+    </div>
+</div>
+<h4>Next Steps...</h4>
+<ol>
+    <li>Print out this page.</li>
+    <li>Enclose this page along with the items being returned in your original shipping box.</li>
+    <li>Affix the return shipping label.  This label was included with your original shipment.</li>
+    <li>Mail the package back to us.  No postage is required.</li>
+</ol>
+<p>Once we receive the package, a replacement or refund will be issued.  Please allow five busines days for processing.</p>
+<p>@Html.BootstrapActionLink("Contact Us", "Create", "Message", new { orderId = Model.OrderId }) if there a question or problem we can answer.</p>

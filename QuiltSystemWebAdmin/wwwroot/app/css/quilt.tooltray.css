@@ -1,0 +1,38 @@
+﻿.tooltray {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.tooltray--hidden {
+    display: none;
+}
+
+.tooltray__heading {
+    clear: both;
+    font-weight: 700;
+}
+
+.tooltray__section {
+}
+
+.tooltray__item {
+    margin: 2px;
+    padding: 0;
+    border: 4px solid white;
+    float: left;
+    line-height: 0;
+}
+
+.tooltray__item--hover {
+    border: 4px solid #6699ff;
+}
+
+.tooltray__item--selected {
+    border: 4px solid #6699ff;
+}
+
+.tooltray__item-canvas {
+    margin: 0;
+    padding: 0;
+}

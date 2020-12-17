@@ -1,0 +1,64 @@
+﻿@model EditReturnRequest
+@{
+    if (Model.ReturnRequestId.HasValue)
+    {
+        ViewBag.Title = "Edit Return Request " + Model.ReturnRequestNumber;
+    }
+    else
+    {
+        ViewBag.Title = "Create Return Request";
+    }
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Return Requests", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.BeginForm("Edit", "ReturnRequest", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.ReturnRequestId)
+    @Html.HiddenFor(m => m.ReturnRequestNumber)
+    @Html.HiddenFor(m => m.FulfillableId)
+    @Html.HiddenFor(m => m.FulfillableName)
+    @Html.BootstrapValidationSummary()
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapDisplay(m => m.ReturnRequestId)
+        @Html.BootstrapDisplay(m => m.ReturnRequestNumber)
+        @Html.BootstrapDisplay(m => m.FulfillableId)
+        @Html.BootstrapDisplay(m => m.FulfillableName)
+        @Html.BootstrapInput(m => m.ReturnRequestType, Model.ReturnRequestTypes, optionLabel: (Model.ReturnRequestType == null));
+        @Html.BootstrapInput(m => m.ReturnRequestReason, Model.ReturnRequestReasons, optionLabel: (Model.ReturnRequestReason == null));
+        <div class="row">
+            <div class="col-12">
+                <h5>Quantities</h5>
+            </div>
+        </div>
+        for (int idx = 0; idx < Model.ReturnRequestItems.Count; ++idx)
+        {
+            @Html.HiddenFor(m => m.ReturnRequestItems[idx].ReturnRequestItemId)
+            @Html.HiddenFor(m => m.ReturnRequestItems[idx].FulfillableItemId)
+            @Html.HiddenFor(m => m.ReturnRequestItems[idx].FulfillableItemReference)
+            @Html.HiddenFor(m => m.ReturnRequestItems[idx].Description)
+            @Html.HiddenFor(m => m.ReturnRequestItems[idx].MaxQuantity)
+            using (Html.BeginBootstrapInput(m => m.ReturnRequestItems[idx].Quantity, Model.ReturnRequestItems[idx].Quantities, labelFormat: Model.ReturnRequestItems[idx].Description))
+            {
+                <img src="@Url.ActionLink("FulfillableItem", "Thumbnail", new { id = Model.ReturnRequestItems[idx].FulfillableItemReference, size = 125 })" width="125" height="125" />
+            }
+        }
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Save", Actions.Save)
+            if (Model.ReturnRequestId.HasValue)
+            {
+                @Html.BootstrapActionLink("Cancel", "Index", "ReturnRequest", new { id = Model.ReturnRequestId.Value })
+            }
+            else
+            {
+                @Html.BootstrapActionLink("Cancel", "Index", "Fulfillable", new { id = Model.FulfillableId })
+            }
+        }
+    }
+}

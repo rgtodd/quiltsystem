@@ -1,0 +1,71 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quilt-A-GoGo Administration</title>
+    <link rel="icon" type="image/x-icon" href="~/Images/fav-icon.ico">
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/jqueryui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/lib/jqueryui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="~/app/css/site.cart.css" rel="stylesheet" />
+    <link href="~/app/css/site.color-dialog.css" rel="stylesheet" />
+    <link href="~/app/css/site.header.css" rel="stylesheet" />
+    <link href="~/app/css/site.kit.css" rel="stylesheet" />
+    <link href="~/app/css/site.list-grid-item.css" rel="stylesheet" />
+    <link href="~/app/css/site.list-grid.css" rel="stylesheet" />
+    <link href="~/app/css/site.return-order-summary.css" rel="stylesheet" />
+    <link href="~/app/css/override.bootstrap.css" rel="stylesheet" />
+    <link href="~/app/css/override.common.css" rel="stylesheet" />
+    <link href="~/app/css/quilt.color-list.css" rel="stylesheet" />
+    <link href="~/app/css/quilt.design-container.css" rel="stylesheet" />
+    <link href="~/app/css/quilt.select.css" rel="stylesheet" />
+    <link href="~/app/css/quilt.tooltray.css" rel="stylesheet" />
+    <link href="~/app/css/MaterialIcons.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body>
+    <nav class="header navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Quilt-A-GoGo", "Index", "Home", null, new { @class = "navbar-brand header__link" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                @await Component.InvokeAsync("NavBar");
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @await Component.InvokeAsync("Feedback")
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery.form/jquery.form.js"></script>
+    <script src="~/lib/popper/umd/popper.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/app/js/site.header.js"></script>
+    <script src="~/app/js/quilt.block-list.js"></script>
+    <script src="~/app/js/quilt.color-list.js"></script>
+    <script src="~/app/js/quilt.design.js"></script>
+    <script src="~/app/js/quilt.draw.js"></script>
+    <script src="~/app/js/quilt.error.js"></script>
+    <script src="~/app/js/quilt.global.js"></script>
+    <script src="~/app/js/quilt.kit.js"></script>
+    <script src="~/app/js/quilt.layout-list.js"></script>
+    <script src="~/app/js/quilt.list-grid-item.js"></script>
+    <script src="~/app/js/quilt.select.js"></script>
+    <script src="~/app/js/quilt.tooltray.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            header_initialize();
+        });
+    </script>
+</body>
+</html>

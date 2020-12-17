@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>RichTodd.QuiltSystem.Service.Api</AssemblyName>
+    <RootNamespace>RichTodd.QuiltSystem</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Service\MicroEvent\" />
+  </ItemGroup>
+
+</Project>

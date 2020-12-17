@@ -1,0 +1,30 @@
+﻿@model FeedbackMessageListVcModel
+@{
+    Layout = null;
+}
+@if (Is.Populated(Model.Messages))
+{
+    foreach (var message in Model.Messages)
+    {
+        switch (message.MessageType)
+        {
+            case "Informational":
+                <div class="alert alert-success" role="alert">
+                    @message.Message
+                </div>
+                break;
+
+            case "Error":
+                <div class="alert alert-danger" role="alert">
+                    @message.Message
+                </div>
+                break;
+
+            default:
+                <div class="alert alert-primary" role="alert">
+                    @message.Message
+                </div>
+                break;
+        }
+    }
+}

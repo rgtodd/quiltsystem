@@ -1,0 +1,17 @@
+﻿@model TestSalesTaxModel
+@{
+    ViewBag.Title = "SalesTax";
+}
+@Html.BootstrapValidationSummary()
+@using (Html.BeginForm("SalesTax", "Test", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.SalesTax)
+        @Html.BootstrapInput(m => m.SalesTaxJurisdiction)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Update", Actions.Update)
+        }
+    }
+}

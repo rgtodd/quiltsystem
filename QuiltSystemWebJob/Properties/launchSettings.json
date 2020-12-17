@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "QuiltAGoGoWebJob": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "dotnet_environment": "Development",
+        "aspnetcore_environment": "Development"
+      }
+    }
+  }
+}

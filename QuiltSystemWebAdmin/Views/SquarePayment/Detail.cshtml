@@ -1,0 +1,180 @@
+﻿@model SquarePayment
+@{
+    ViewBag.Title = "Square Payment " + Model.SquarePaymentId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Square Payments", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "SquarePayment", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.SquarePaymentId)
+    @using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.SquarePaymentId)
+        if (Model.SquarePaymentReference != null)
+        {
+            var squarePaymentReference = RichTodd.QuiltSystem.Service.Base.ParseReferenceValues.From(Model.SquarePaymentReference);
+            var squarePaymentReferenceText = squarePaymentReference.ToString();
+            @Html.BootstrapDisplay(m => squarePaymentReferenceText, labelFormat: "Square Payment Reference", link: Url.Action(squarePaymentReference))
+        }
+        @Html.BootstrapDisplay(m => m.SquareCustomerId, link: Url.Action("Index", "SquareCustomer", new { id = Model.SquareCustomerId }))
+        if (Model.FunderId != null)
+        {
+            @Html.BootstrapDisplay(m => m.FunderId, link: Url.Action("Index", "Funder", new { id = Model.FunderId }))
+        }
+        if (Model.UserId != null)
+        {
+            @Html.BootstrapDisplay(m => m.UserId, link: Url.Action("Index", "User", new { id = Model.UserId }))
+        }
+        @Html.BootstrapDisplay(m => m.PaymentAmount)
+        @Html.BootstrapDisplay(m => m.RefundAmount)
+        @Html.BootstrapDisplay(m => m.ProcessingFeeAmount)
+        @Html.BootstrapDisplay(m => m.SquarePaymentRecordId)
+        @Html.BootstrapDisplay(m => m.VersionNumber)
+        @Html.BootstrapDisplay(m => m.UpdateDateTime)
+    }
+    @if (Is.Populated(Model.Transactions))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Transactions <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#transactionCard">Show</button></h5>
+            <div class="collapse" id="transactionCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Unit of Work</th>
+                            <th>Transaction Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var transaction in Model.Transactions)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => transaction.Id)</td>
+                                <td class="text-nowrap">@Html.DisplayForMultilineText(m => transaction.Description)</td>
+                                <td>@Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })</td>
+                                <td>@Html.DisplayFor(m => transaction.TransactionDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Events))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Events <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#eventCard">Show</button></h5>
+            <div class="collapse" id="eventCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th>ID</th>
+                            <th>Event Type</th>
+                            <th>Event Date/TIme</th>
+                            <th>Processing Status</th>
+                            <th>Status Date/Time</th>
+                            <th>Unif of Work</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var _event in Model.Events)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <td>@Html.DisplayFor(m => _event.Id)</td>
+                                <td>@Html.DisplayFor(m => _event.EventTypeCode)</td>
+                                <td>@Html.DisplayFor(m => _event.EventDateTime)</td>
+                                <td>@Html.DisplayFor(m => _event.ProcessingStatusCode)</td>
+                                <td>@Html.DisplayFor(m => _event.StatusDateTime)</td>
+                                <td>@Html.ActionLink(_event.UnitOfWork, "Index", "Event", new { unitOfWork = _event.UnitOfWork })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    @if (Is.Populated(Model.Refunds))
+    {
+        foreach (var refund in Model.Refunds)
+        {
+            <h3>Refund @refund.SquareRefundId</h3>
+            @using (Html.BootstrapBeginForm().ForDisplay())
+            {
+                @Html.BootstrapDisplay(m => refund.SquareRefundId)
+                @Html.BootstrapDisplay(m => refund.RefundAmount)
+                @Html.BootstrapDisplay(m => refund.ProcessingFeeAmount)
+                @Html.BootstrapDisplay(m => refund.SquareRefundRecordId)
+                @Html.BootstrapDisplay(m => refund.VersionNumber)
+                @Html.BootstrapDisplay(m => refund.UpdateDateTime)
+            }
+            @if (Is.Populated(refund.Transactions))
+            {
+                <div class="card mt-3">
+                    <h5 class="card-header">Transactions <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="@($"#transactionCard{refund.SquareRefundId}")">Show</button></h5>
+                    <div class="collapse" id="@($"transactionCard{refund.SquareRefundId}")">
+                        <table class="card-body mb-0 @Css.DetailTable">
+                            <thead class="@Css.DetailTableHead">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                    <th>Unit of Work</th>
+                                    <th>Transaction Date/Time</th>
+                                </tr>
+                            </thead>
+                            <tbody class="@Css.DetailTableBody">
+                                @foreach (var transaction in refund.Transactions)
+                                {
+                                    <tr class="@Css.DetailTableRow">
+                                        <td>@Html.DisplayFor(m => transaction.Id)</td>
+                                        <td class="text-nowrap">@Html.DisplayForMultilineText(m => transaction.Description)</td>
+                                        <td>@Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })</td>
+                                        <td>@Html.DisplayFor(m => transaction.TransactionDateTime)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            @if (Is.Populated(refund.Events))
+            {
+                <div class="card mt-3">
+                    <h5 class="card-header">Events <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="@($"#eventCard{refund.SquareRefundId}")">Show</button></h5>
+                    <div class="collapse" id="@($"eventCard{refund.SquareRefundId}")">
+                        <table class="card-body mb-0 @Css.DetailTable">
+                            <thead class="@Css.DetailTableHead">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Event Type</th>
+                                    <th>Event Date/TIme</th>
+                                    <th>Processing Status</th>
+                                    <th>Status Date/Time</th>
+                                    <th>Unif of Work</th>
+                                </tr>
+                            </thead>
+                            <tbody class="@Css.DetailTableBody">
+                                @foreach (var _event in refund.Events)
+                                {
+                                    <tr class="@Css.DetailTableRow">
+                                        <td>@Html.DisplayFor(m => _event.Id)</td>
+                                        <td>@Html.DisplayFor(m => _event.EventTypeCode)</td>
+                                        <td>@Html.DisplayFor(m => _event.EventDateTime)</td>
+                                        <td>@Html.DisplayFor(m => _event.ProcessingStatusCode)</td>
+                                        <td>@Html.DisplayFor(m => _event.StatusDateTime)</td>
+                                        <td>@Html.ActionLink(_event.UnitOfWork, "Index", "Event", new { unitOfWork = _event.UnitOfWork })</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        }
+    }
+}

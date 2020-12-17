@@ -1,0 +1,21 @@
+﻿@model InventoryItemDetailModel
+@{
+    ViewBag.Title = "Inventory Item";
+}
+@using (Html.ListBeginForm("DetailSubmit", "InventoryItem", FormMethod.Post, null))
+{
+    <div class="row">
+        @Html.BootstrapListActionLink("Return", "Index")
+    </div>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.Id)
+        @Html.BootstrapDisplay(m => m.Sku)
+        @Html.BootstrapDisplay(m => m.TypeName)
+        @Html.BootstrapDisplay(m => m.Name)
+        @Html.BootstrapDisplay(m => m.Manufacturer)
+        @Html.BootstrapDisplay(m => m.Collection)
+        @Html.BootstrapDisplay(m => m.Quantity)
+    }
+    @Html.HiddenFor(m => m.Id)
+}

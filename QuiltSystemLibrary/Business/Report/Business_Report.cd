@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Business.Report.Aggregate" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\Aggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.CountAggregate" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAABAAEAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Business\Report\Aggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.DecimalSumAggregate" Collapsed="true">
+    <Position X="8.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\Aggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.IntegerSumAggregate" Collapsed="true">
+    <Position X="6.25" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\Aggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.SumAggregate&lt;T&gt;" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAABAAEAAAAAAAAAAAAAAAAAAAAAAAAQQA=</HashCode>
+      <FileName>Business\Report\Aggregate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.HtmlReportWriter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="RichTodd.QuiltSystem.Business.Report.HtmlReportWriter.Cell" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Business\Report\HtmlReportWriter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="RichTodd.QuiltSystem.Business.Report.HtmlReportWriter.Column" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Business\Report\HtmlReportWriter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="RichTodd.QuiltSystem.Business.Report.HtmlReportWriter.Row" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Business\Report\HtmlReportWriter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAMAAARAAIAGAAAAAgAABAAAAAAAAAQAAAAAQIAAAAA=</HashCode>
+      <FileName>Business\Report\HtmlReportWriter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.InvoiceDetailReport" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Business\Report\InvoiceDetailReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.OrderLedgerAccountBalancesReport" Collapsed="true">
+    <Position X="4" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\OrderLedgerAccountBalancesReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.OrderStatusReport" Collapsed="true">
+    <Position X="8" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\OrderStatusReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.RecordCountReport" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Business\Report\RecordCountReport.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.Report&lt;TRecord&gt;" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAAIAAAAAEAAAAAAAABAAAIAAAIAAABAAAAAI=</HashCode>
+      <FileName>Business\Report\Report.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.DbSetExtensions" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\ReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.ReportBuilder&lt;TSource&gt;" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Business\Report\ReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.ReportFontLoader" Collapsed="true">
+    <Position X="18" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAEIAAQABAAAAAAAACAAAAAIAAABAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\ReportFontLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.ReportFontResolver" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\ReportFontResolver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.StandardReport&lt;TRecord&gt;" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>SAEAEAAAAACAAAAFgEAAAAAAZAAAIAACIAAABIAACAA=</HashCode>
+      <FileName>Business\Report\StandardReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.Test2" Collapsed="true">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Business\Report\Test2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.TestReport" Collapsed="true">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\TestReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Business.Report.TypeTableSummaryReport" Collapsed="true">
+    <Position X="10.75" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAABAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Business\Report\TypeTableSummaryReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RichTodd.QuiltSystem.Business.Report.IReport" Collapsed="true">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Business\Report\IReport.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RichTodd.QuiltSystem.Business.Report.IReportWriter" Collapsed="true">
+    <Position X="16.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Business\Report\IReportWriter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

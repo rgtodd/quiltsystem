@@ -1,0 +1,30 @@
+﻿@model MessageReplyModel
+@{
+    ViewBag.Title = "Send Message";
+}
+@Html.BootstrapValidationSummary()
+@*@{Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });}*@
+@using (Html.BeginForm("Reply", "Message", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapDisplay(m => m.Subject)
+        @Html.BootstrapInput(m => m.Text)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Create", Actions.New)
+            @Html.BootstrapListActionLink("Cancel", "Index")
+        }
+    }
+    @Html.HiddenFor(m => m.Subject)
+    @Html.HiddenFor(m => m.ReplyToMessageId)
+    @Html.HiddenFor(m => m.OrderId)
+    if (Model.Conversation != null && Model.Conversation.Count > 0)
+    {
+        <h3>Previous Messages</h3>
+        foreach (var relatedMessage in Model.Conversation)
+        {
+            @await Html.PartialAsync("_Message", relatedMessage);
+        }
+    }
+}

@@ -1,0 +1,88 @@
+﻿@model DashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+<secured-div policy="@ApplicationPolicies.AllowViewUser" class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Application</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Blocks", "Index", "Block", null, new { @class = "card-link" })
+                @Html.ActionLink("Designs", "Index", "Design", null, new { @class = "card-link" })
+                @Html.ActionLink("Projects", "Index", "Project", null, new { @class = "card-link" })
+                @Html.ActionLink("Orders", "Index", "Order", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</secured-div>
+<secured-div policy="@ApplicationPolicies.AllowViewFinancial" class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Financial</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Fundables", "Index", "Fundable", null, new { @class = "card-link" })
+                @Html.ActionLink("Funders", "Index", "Funder", null, new { @class = "card-link" })
+                @Html.ActionLink("Square Customers", "Index", "SquareCustomer", null, new { @class = "card-link text-nowrap" })
+                @Html.ActionLink("Square Payments", "Index", "SquarePayment", null, new { @class = "card-link text-nowrap" })
+                @Html.ActionLink("Ledger", "Index", "Ledger", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</secured-div>
+<secured-div policy="@ApplicationPolicies.AllowViewFulfillment" class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Fulfillment</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Fulfillables", "Index", "Fulfillable", null, new { @class = "card-link" })
+                @Html.ActionLink("Shipment Requests", "Index", "ShipmentRequest", null, new { @class = "card-link text-nowrap" })
+                @Html.ActionLink("Shipments", "Index", "Shipment", null, new { @class = "card-link" })
+                @Html.ActionLink("Return Requests", "Index", "ReturnRequest", null, new { @class = "card-link text-nowrap" })
+                @Html.ActionLink("Returns", "Index", "Return", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</secured-div>
+<div class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Communication</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Alerts", "Index", "Alert", null, new { @class = "card-link" })
+                @Html.ActionLink("Messages", "Index", "Message", null, new { @class = "card-link" })
+                @Html.ActionLink("Notifications", "Index", "Notification", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Miscellaneous</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Users", "Index", "User", null, new { @class = "card-link" })
+                @Html.ActionLink("Debug", "Index", "Debug", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</div>

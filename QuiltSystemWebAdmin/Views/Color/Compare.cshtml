@@ -1,0 +1,13 @@
+﻿@model ColorPaletteCompareModel
+@{
+    ViewBag.Title = "Index";
+}
+<table>
+    @foreach (var comparison in Model.Comparisons)
+    {
+        <tr>
+            <td style="padding: 5px; background-color: @comparison.Color1.WebColor; font-size: 8pt; padding: 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td style="padding: 5px; background-color: @comparison.Color2.WebColor; font-size: 8pt; padding: 0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+    }
+</table>

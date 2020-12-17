@@ -1,0 +1,26 @@
+.cart {
+}
+
+.cart__heading {
+    border-top: 2px solid #D8D8D8;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.cart__subtotals {
+    border-top: 2px solid #D8D8D8;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.cart__shipping-address {
+    border-top: 2px solid #D8D8D8;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.cart__navigation {
+    border-top: 2px solid #D8D8D8;
+    margin-top: 20px;
+    padding-top: 10px;
+}

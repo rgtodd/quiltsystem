@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>RichTodd.QuiltSystem.Service.Web</AssemblyName>
+    <RootNamespace>RichTodd.QuiltSystem</RootNamespace>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuiltSystemLibraryWeb\QuiltSystemLibraryWeb.csproj" />
+    <ProjectReference Include="..\QuiltSystemService\QuiltSystemService.csproj" />
+  </ItemGroup>
+
+</Project>

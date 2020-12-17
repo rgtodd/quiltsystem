@@ -1,0 +1,27 @@
+﻿@model ProfileEditShippingAddressModel
+@{
+    ViewBag.Title = "Edit Shipping Address";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@Html.BootstrapValidationSummary()
+@using (Html.BeginForm("EditShippingAddress", "Profile", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.AddressLine1)
+        @Html.BootstrapInput(m => m.AddressLine2)
+        @Html.BootstrapInput(m => m.City)
+        @Html.BootstrapInput(m => m.StateCode, Model.StateCodes)
+        @Html.BootstrapInput(m => m.PostalCode)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Update", Actions.Update)
+            @Html.BootstrapActionLink("Delete", "DeleteShippingAddress", "Profile")
+            @Html.BootstrapActionLink("Cancel", "Index", "Profile")
+        }
+    }
+}

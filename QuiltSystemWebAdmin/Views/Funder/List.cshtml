@@ -1,0 +1,57 @@
+﻿@model FunderList
+@{
+    ViewBag.Title = "Funders";
+    var heading = ModelMetadata<FunderListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Funder", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.HasFundsAvailable, Model.Filter.HasFundsAvailableList);
+        @Html.BootstrapInput(m => m.Filter.HasFundsRefundable, Model.Filter.HasFundsRefundableList);
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList);
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FunderId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.FunderReference))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFundsReceived))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFundsAvailable))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFundsRefunded))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalFundsRefundable))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TotalProcessingFee))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: item.FunderId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.FunderId)</td>
+                    <td>@Html.DisplayFor(m => item.FunderReference)</td>
+                    <td>@Html.DisplayFor(m => item.TotalFundsReceived)</td>
+                    <td>@Html.DisplayFor(m => item.TotalFundsAvailable)</td>
+                    <td>@Html.DisplayFor(m => item.TotalFundsRefunded)</td>
+                    <td>@Html.DisplayFor(m => item.TotalFundsRefundable)</td>
+                    <td>@Html.DisplayFor(m => item.TotalProcessingFee)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

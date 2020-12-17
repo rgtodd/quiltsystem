@@ -1,0 +1,49 @@
+﻿@model SquareCustomerList
+@{
+    ViewBag.Title = "Square Customers";
+    var heading = ModelMetadata<SquareCustomerListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "SquareCustomer", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.SquareCustomerId))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.SquareCustomerReference))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UpdateDateTime))</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.BootstrapListActionLink("Detail", "Index", id: item.SquareCustomerId)
+                        </td>
+                        <td>@Html.DisplayFor(m => item.SquareCustomerId)</td>
+                        <td>@Html.DisplayFor(m => item.SquareCustomerReference)</td>
+                        <td>@Html.DisplayFor(m => item.UpdateDateTime)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

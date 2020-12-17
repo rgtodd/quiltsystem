@@ -1,0 +1,35 @@
+﻿@model MessageDetailModel
+@{
+    ViewBag.Title = "Message";
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+    </h5>
+</div>
+@using (Html.BeginForm("Message", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    //Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapListActionLink("Return", "Index")
+            if (Model.Incoming)
+            {
+                @:
+                @Html.BootstrapSubmitButton("Reply", Actions.Reply)
+            }
+        }
+    }
+    @await Html.PartialAsync("_Message", Model)
+    @Html.HiddenFor(m => m.MessageId)
+    if (Model.Conversation != null && Model.Conversation.Count > 0)
+    {
+        <h3>Previous Messages</h3>
+        foreach (var relatedMessage in Model.Conversation)
+        {
+            @await Html.PartialAsync("_Message", relatedMessage);
+        }
+    }
+}

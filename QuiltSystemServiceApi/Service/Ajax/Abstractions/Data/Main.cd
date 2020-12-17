@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XColor_Color" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAQAAAAAAAAAAAAAAAAACQAAAAAAAAAEIAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XColor_Color.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XColor_ColorComparison" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XColor_ColorComparison.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XColor_ColorComparisonList" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XColor_ColorComparisonList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XColor_ColorPalette" Collapsed="true">
+    <Position X="12.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAgQAAABAAABAAAIAAAAACAAAAAAAIAAACAAQAQAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XColor_ColorPalette.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Block" Collapsed="true">
+    <Position X="2" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAQQAAAAAAAAAQAABAAAABAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Block.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="preview" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_BlockPreview" Collapsed="true">
+    <Position X="2.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_BlockPreview.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="shapes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Color" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Color.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Design" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAWAQAAAAAAAAAAAAAAAAAAACAAABAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Design.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="layout" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="blocks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_DesignBlock" Collapsed="true">
+    <Position X="11.5" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAQQAAAAAAAAAQAABAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_DesignBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_DesignInfo" Collapsed="true">
+    <Position X="0.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAAAAACAAABAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_DesignInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="layout" />
+      <Property Name="preview" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="blocks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_DesignLayout" Collapsed="true">
+    <Position X="12" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAQAQAAAIAAAAAAQAAAAAIAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_DesignLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_DesignPreview" Collapsed="true">
+    <Position X="0.5" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_DesignPreview.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="layoutSites" />
+      <Property Name="shapes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_FabricStyleCatalog" Collapsed="true">
+    <Position X="6" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_FabricStyleCatalog.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="manufacturers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_FabricStyleCollection" Collapsed="true">
+    <Position X="6" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_FabricStyleCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_FabricStyleManufacturer" Collapsed="true">
+    <Position X="6" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_FabricStyleManufacturer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="collections" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Layout" Collapsed="true">
+    <Position X="4.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAQAQAAAIAAAAAAQAAAAAIBAAAAEAAAAAAAgA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Layout.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="preview" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_LayoutPreview" Collapsed="true">
+    <Position X="4.25" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAQAQAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_LayoutPreview.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="layoutSites" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_LayoutSite" Collapsed="true">
+    <Position X="4.75" Y="10" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAACAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_LayoutSite.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="path" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Path" Collapsed="true">
+    <Position X="4.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Path.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="points" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Point" Collapsed="true">
+    <Position X="4.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Service.Ajax.Abstractions.Data.XDesign_Shape" Collapsed="true">
+    <Position X="2.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAACAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\Ajax\Abstractions\Data\XDesign_Shape.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="path" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,20 @@
+﻿@model MessageCreateModel
+@{
+    ViewBag.Title = "Send Message";
+}
+@Html.BootstrapValidationSummary()
+@*@await Component.InvokeAsync("Order", new { orderId = Model.OrderId })*@
+@using (Html.BeginForm("Create", "Message", FormMethod.Post, new { id = "frmMain", novalidate = "novalidate" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Subject, Model.Subjects)
+        @Html.BootstrapInput(m => m.Text)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Create", Actions.New)
+            @Html.BootstrapListActionLink("Cancel", "Index")
+        }
+    }
+    @Html.HiddenFor(m => m.OrderId)
+}

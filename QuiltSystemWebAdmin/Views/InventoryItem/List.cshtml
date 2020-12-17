@@ -1,0 +1,74 @@
+﻿@model InventoryItemListModel
+@{
+    ViewBag.Title = "Inventory Items";
+    var heading = ModelMetadata<InventoryItemModel>.Create(Context.RequestServices);
+}
+@using (Html.ListBeginForm("ListSubmit", "InventoryItem", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter, Model.Filters)
+        @Html.BootstrapInput(m => m.Search)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Id))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Sku))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Manufacturer))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Collection))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Quantity))</th>
+                <th>Stocks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var inventoryItem in Model.InventoryItems)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: inventoryItem.Sku)
+                    </td>
+                    <td>@Html.DisplayFor(m => inventoryItem.Id)</td>
+                    <td>@Html.DisplayFor(m => inventoryItem.Sku)</td>
+                    <td>@Html.DisplayFor(m => inventoryItem.Manufacturer)</td>
+                    <td>@Html.DisplayFor(m => inventoryItem.Collection)</td>
+                    <td>@Html.DisplayFor(m => inventoryItem.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.InventoryItems.PageCount < Model.InventoryItems.PageNumber ? 0 : Model.InventoryItems.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.InventoryItems, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}
+
+@*@model InventoryItemsModel
+    @{
+    ViewBag.Title = "Inventory";
+    }
+    <div class="row">
+    @for (int idx = 0; idx < Model.InventoryItems.Count; ++idx)
+    {
+    <div class="col-md-3">
+    <div>@Html.DisplayFor(m => m.InventoryItems[idx].Manufacturer)</div>
+    <div>@Html.DisplayFor(m => m.InventoryItems[idx].Collection)</div>
+    <div>@Html.DisplayFor(m => m.InventoryItems[idx].Name)</div>
+    <div>@Html.DisplayFor(m => m.InventoryItems[idx].Sku)</div>
+    <div style="background-color: @Model.InventoryItems[idx].WebColor; height: 25px;"></div>
+    @for (int idx2 = 0; idx2 < Model.InventoryItems[idx].Stocks.Count; idx2++)
+    {
+    <div>
+    @Html.DisplayFor(m => m.InventoryItems[idx].Stocks[idx2].CurrentQuantity)
+    @@
+    @Html.DisplayFor(m => m.InventoryItems[idx].Stocks[idx2].UnitCost)
+    /
+    @Html.DisplayFor(m => m.InventoryItems[idx].Stocks[idx2].UnitOfMeasure)
+    </div>
+    }
+    </div>
+    }
+    </div>*@

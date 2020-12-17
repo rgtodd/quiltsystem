@@ -1,0 +1,64 @@
+﻿@model AlertList
+@{
+    ViewBag.Title = "Alerts";
+    var heading = ModelMetadata<AlertListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Alert", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.Acknowledged, Model.Filter.AcknowledgedList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+            @Html.BootstrapSubmitButton("Mark All Complete", Actions.MarkAllComplete)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.AlertId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.AlertType))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.AlertDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.CompletedDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Description))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UserEmail))</th>
+                @*<th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.OrderNumber))</th>
+                    <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.PayPalIpnId))</th>*@
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Exception))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("View", "Index", id: item.AlertId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.AlertId)</td>
+                    <td>@Html.DisplayFor(m => item.AlertType)</td>
+                    <td>@Html.DisplayFor(m => item.AlertDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.CompletedDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.Description)</td>
+                    <td>@Html.DisplayFor(m => item.UserEmail)</td>
+                    @*<td>@Html.DisplayFor(m => alert.OrderNumber)</td>
+                        <td>@Html.DisplayFor(m => alert.PayPalIpnId)</td>*@
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Exception))
+                        {<span class="glyphicon glyphicon-asterisk"></span>}
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

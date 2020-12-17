@@ -1,0 +1,64 @@
+﻿@model MemberSummaryModel
+@{
+    ViewBag.Title = "Home";
+}
+<h1 class="mb-4">
+    My Designs
+</h1>
+<div class="list-grid row">
+    <div class="col-6 col-md-3 col-xl-2">
+        <div class="list-grid-item list-grid__item">
+            <div class="list-grid-item__body">
+                <div class="list-grid-item__action-link">
+                    <a href='@Url.Action("Index", "Design", new { id = Guid.Empty })'><i class="material-icons add"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    @foreach (var item in Model.DesignSummaries)
+    {
+        <div class="col-6 col-md-3 col-xl-2">
+            <div class="list-grid-item list-grid__item" tabindex="0">
+                <div class="list-grid-item__body">
+                    <img class="list-grid-item__image" src="@Url.Content("~/Thumbnail/Design/" + item.DesignId + "?size=150")" />
+                    <div class="list-grid-item__overlay">
+                        <div class="list-grid-item__action-link">
+                            <a href='@Url.Action("Index", "Design", new { id = item.DesignId })'><i class="material-icons mode-edit"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<p>@Html.BootstrapActionLink("View All", "Index", "Design")</p>
+<h1 class="mb-4">
+    My Kits
+</h1>
+<div class="list-grid row">
+    @foreach (var item in Model.ProjectSummaries)
+    {
+        <div class="col-6 col-md-3 col-xl-2">
+            <div class="list-grid-item list-grid__item" tabindex="0">
+                <div class="list-grid-item__body">
+                    <img class="list-grid-item__image" src="@Url.Content("~/Thumbnail/Kit/" + item.ProjectId+ "?size=150")" />
+                    <div class="list-grid-item__overlay">
+                        <div class="list-grid-item__action-link">
+                            <a href='@Url.Action("Index", "Kit", new { id = item.ProjectId})'><i class="material-icons mode-edit"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<p>@Html.BootstrapActionLink("View All", "Index", "Kit")</p>
+<h1>My Orders</h1>
+<p>@Html.BootstrapActionLink("View", "Index", "Order")</p>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            listGridItem_initialize();
+        })
+    </script>
+}

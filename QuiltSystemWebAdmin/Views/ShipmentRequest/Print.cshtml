@@ -1,0 +1,43 @@
+﻿@model ShipmentRequest
+@{
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+    ViewBag.Title = "Shipment Request";
+}
+<div class="shipment-request">
+    <div class="shipment-request__summary">
+        <img src="~/Images/Logo-Web.png" style="float: right" />
+        <h1>Shipment Request</h1>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(m => m.ShipmentRequestId)</td>
+                <td>@Html.DisplayFor(m => m.ShipmentRequestId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.CreationDateTime)</td>
+                <td>@Html.DisplayFor(m => m.CreationDateTime)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ShipmentRequestNumber)</td>
+                <td>@Html.DisplayFor(m => m.ShipmentRequestNumber)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ShipmentRequestStatus)</td>
+                <td>@Html.DisplayFor(m => m.ShipmentRequestStatus)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.StatusDateTime)</td>
+                <td>@Html.DisplayFor(m => m.StatusDateTime)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(m => m.ShipToAddress)</td>
+                <td>@Html.DisplayFor(m => m.ShipToAddress)</td>
+            </tr>
+        </table>
+        <h2>Shipment Items</h2>
+        @foreach (var shipmentRequestFulfillable in Model.ShipmentRequestFulfillables)
+        {
+
+        }
+    </div>
+    
+</div>

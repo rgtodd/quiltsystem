@@ -1,0 +1,15 @@
+﻿.header {
+}
+
+.header__link {
+}
+
+.header__title {
+}
+
+.header__button {
+}
+
+.header__button--disabled {
+    visibility: hidden;
+}

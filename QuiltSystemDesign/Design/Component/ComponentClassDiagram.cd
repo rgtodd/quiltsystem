@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RichTodd.QuiltSystem.Design.Component.Component">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Component" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Field Name="m_category" Hidden="true" />
+      <Field Name="m_fabricStyles" Hidden="true" />
+      <Field Name="m_name" Hidden="true" />
+      <Field Name="m_parameters" Hidden="true" />
+      <Field Name="m_type" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQAAIAAAAAAAAAAEAAAAAAQAABAQAIAAAYAABAAACBA=</HashCode>
+      <FileName>Design\Component\Component.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FabricStyles" />
+      <Property Name="Parameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Component.Standard.BlockComponent">
+    <Position X="4" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="BlockComponent" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="Configure" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Field Name="FabricStyleCountParameter" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Field Name="s_configuration" Hidden="true" />
+      <Field Name="TypeName" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="RichTodd.QuiltSystem.Design.Component.Standard.BlockComponent.Configuration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Design\Component\Standard\BlockComponent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAABBAAABAAAAAAAAQANAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Component\Standard\BlockComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Component.Standard.LayoutComponent">
+    <Position X="1.75" Y="4" Width="1.75" />
+    <Members>
+      <Field Name="BlockCountParameter" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Field Name="ColumnCountParameter" Hidden="true" />
+      <Method Name="Configure" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Method Name="JsonSave" Hidden="true" />
+      <Method Name="LayoutComponent" Hidden="true" />
+      <Field Name="m_children" Hidden="true" />
+      <Field Name="RowCountParameter" Hidden="true" />
+      <Field Name="s_configuration" Hidden="true" />
+      <Field Name="TypeName" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="RichTodd.QuiltSystem.Design.Component.Standard.LayoutComponent.Configuration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Design\Component\Standard\LayoutComponent.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="Children" Type="RichTodd.QuiltSystem.Design.Component.Component" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.75" Y="4.5" />
+        <Point X="1.375" Y="4.5" />
+        <Point X="1.375" Y="1.125" />
+        <Point X="3.438" Y="1.125" />
+        <Point X="3.438" Y="1.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAABEAAAAQAAQANIAABCAAABAEhA=</HashCode>
+      <FileName>Design\Component\Standard\LayoutComponent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Children" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Component.ComponentParameterCollection" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAABAAAIAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Component\ComponentParameterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RichTodd.QuiltSystem.Design.Primitives.FabricStyleList" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAABA=</HashCode>
+      <FileName>Design\Primitives\FabricStyleList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

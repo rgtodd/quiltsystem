@@ -1,0 +1,83 @@
+﻿@model KitDetailVcModel
+<div class="kit">
+    <h3>Kit Options</h3>
+    @using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.Specification.Size)
+        @Html.BootstrapDisplay(m => m.Specification.Border)
+        @Html.BootstrapDisplay(m => m.Specification.Binding)
+        @Html.BootstrapDisplay(m => m.Specification.Backing)
+        @Html.BootstrapDisplay(m => m.Specification.TrimTriangles)
+    }
+    <h3>Fabrics</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Size</th>
+                <th>Part</th>
+                <th>Collection</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Model.Parts)
+            {
+                <tr>
+                    <td><div style="width: 50px; height: 25px; background-color: @part.WebColor;"></div></td>
+                    <td><span class="badge badge-primary">@part.Id</span></td>
+                    <td>@part.Quantity</td>
+                    <td>@part.Size</td>
+                    <td>@part.Description</td>
+                    <td>@part.Manufacturer - @part.Collection (@part.Sku)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3>Instructions</h3>
+    @foreach (var buildStep in Model.BuildSteps)
+    {
+        <div class="kit__step">
+            <div class="kit__step-header">
+                @buildStep.Description
+            </div>
+            <div>
+                <table class="kit__step-detail">
+                    <tr>
+                        <td class="kit__step-detail-item">
+                            @foreach (var input in buildStep.Consumes)
+                            {
+                                <p>
+                                    @input.Quantity X <span class="badge badge-primary">@(input.PartId ?? input.Id)</span>
+                                    @input.Name @input.SkuName1 @input.SkuName2 (@input.Width X @input.Height)
+                                </p>
+                                if (input.Image != null)
+                                {
+                                    <p>
+                                        <img src="data:image;base64,@Convert.ToBase64String(@input.Image)">
+                                    </p>
+                                }
+                            }
+                        </td>
+                        <td class="kit__step-detail-item">
+                            @foreach (var output in buildStep.Produces)
+                            {
+                                <p>
+                                    @output.Quantity X <span class="badge badge-primary">@output.Id</span>
+                                    @output.Name @output.SkuName1 @output.SkuName2 (@output.Width X @output.Height)
+                                </p>
+                                if (output.Image != null)
+                                {
+                                    <p>
+                                        <img src="data:image;base64,@Convert.ToBase64String(output.Image)">
+                                    </p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+</div>

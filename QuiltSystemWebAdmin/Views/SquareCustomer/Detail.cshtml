@@ -1,0 +1,65 @@
+﻿@model SquareCustomer
+@{
+    ViewBag.Title = "Square Customer " + Model.SquareCustomerId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Square Customers", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "SquareCustomer", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.HiddenFor(m => m.SquareCustomerId)
+    @using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.SquareCustomerId)
+        if (Model.SquareCustomerReference != null)
+        {
+            var squareCustomerReference = RichTodd.QuiltSystem.Service.Base.ParseReferenceValues.From(Model.SquareCustomerReference);
+            var squareCustomerReferenceText = squareCustomerReference.ToString();
+            @Html.BootstrapDisplay(m => squareCustomerReferenceText, labelFormat: "Square Customer Reference", link: Url.Action(squareCustomerReference))
+        }
+        @Html.BootstrapDisplay(m => m.UpdateDateTime)
+    }
+    if (Is.Populated(Model.Payments))
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">Payments <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse" data-target="#paymentCard">Show</button></h5>
+            <div class="collapse" id="paymentCard">
+                <table class="card-body mb-0 @Css.DetailTable">
+                    <thead class="@Css.DetailTableHead">
+                        <tr>
+                            <th></th>
+                            <th>Square Payment ID</th>
+                            <th>Square Payment Reference</th>
+                            <th>Payment Amount</th>
+                            <th>Refund Amount</th>
+                            <th>Processing Fee Amount</th>
+                            <th>Square Payment Record ID</th>
+                            <th>Version Number</th>
+                            <th>Update Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="@Css.DetailTableBody">
+                        @foreach (var payment in Model.Payments)
+                        {
+                            <tr class="@Css.DetailTableRow">
+                                <th>@Html.BootstrapActionLink("View", "Index", "SquarePayment", new { id = payment.SquarePaymentId })</th>
+                                <td>@Html.DisplayFor(m => payment.SquarePaymentId)</td>
+                                <td>@Html.DisplayFor(m => payment.SquarePaymentReference)</td>
+                                <td>@Html.DisplayFor(m => payment.PaymentAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.RefundAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.ProcessingFeeAmount)</td>
+                                <td>@Html.DisplayFor(m => payment.SquarePaymentRecordId)</td>
+                                <td>@Html.DisplayFor(m => payment.VersionNumber)</td>
+                                <td>@Html.DisplayFor(m => payment.UpdateDateTime)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

@@ -1,0 +1,97 @@
+﻿@model EventLogList
+@{
+    ViewBag.Title = "Events";
+    var heading = ModelMetadata<EventLogListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Event", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Source, Model.SourceList)
+        @Html.BootstrapInput(m => m.UnitOfWork)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.EventId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.TransactionId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.EntityId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Source))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.EventType))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.EventDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.ProcessingStatus))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.StatusDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UnitOfWork))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @{
+                            switch (item.Source)
+                            {
+                                case MSources.Funder:
+                                    @Html.BootstrapActionLink("View", "Index", "Funder", new { id = item.EntityId })
+                                    break;
+                                case MSources.Fundable:
+                                    @Html.BootstrapActionLink("View", "Index", "Fundable", new { id = item.EntityId })
+                                    break;
+
+                                case MSources.Fulfillable:
+                                    @Html.BootstrapActionLink("View", "Index", "Fulfillable", new { id = item.EntityId })
+                                    break;
+                                case MSources.ShipmentRequest:
+                                    @Html.BootstrapActionLink("View", "Index", "ShipmentRequest", new { id = item.EntityId })
+                                    break;
+                                case MSources.Shipment:
+                                    @Html.BootstrapActionLink("View", "Index", "Shipment", new { id = item.EntityId })
+                                    break;
+                                case MSources.ReturnRequest:
+                                    @Html.BootstrapActionLink("View", "Index", "ReturnRequest", new { id = item.EntityId })
+                                    break;
+                                case MSources.Return:
+                                    @Html.BootstrapActionLink("View", "Index", "Return", new { id = item.EntityId })
+                                    break;
+
+                                case MSources.Order:
+                                    @Html.BootstrapActionLink("View", "Index", "Order", new { id = item.EntityId })
+                                    break;
+
+                                case MSources.SquarePayment:
+                                    @Html.BootstrapActionLink("View", "Index", "SquarePayment", new { id = item.EntityId })
+                                    break;
+                                case MSources.SquareRefund:
+                                    @Html.BootstrapActionLink("View", "Index", "SquarePayment", new { refundId = item.EntityId })
+                                    break;
+                            }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(m => item.EventId)</td>
+                    <td>@Html.DisplayFor(m => item.TransactionId)</td>
+                    <td>@Html.DisplayFor(m => item.EntityId)</td>
+                    <td>@Html.DisplayFor(m => item.Source)</td>
+                    <td>@Html.DisplayFor(m => item.EventType)</td>
+                    <td>@Html.DisplayFor(m => item.EventDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.ProcessingStatus)</td>
+                    <td>@Html.DisplayFor(m => item.StatusDateTime)</td>
+                    <td>@Html.DisplayFor(m => item.UnitOfWork)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

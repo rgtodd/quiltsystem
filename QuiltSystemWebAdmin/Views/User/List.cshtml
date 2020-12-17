@@ -1,0 +1,44 @@
+﻿@model UserList
+@{
+    ViewBag.Title = "Users";
+    var heading = ModelMetadata<UserListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Role, Model.Roles)
+        @Html.BootstrapInput(m => m.UserName)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UserName))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var userSummary in Model.UserSummaries)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: userSummary.UserId)
+                    </td>
+                    <td>@Html.DisplayFor(m => userSummary.UserName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.UserSummaries.PageCount < Model.UserSummaries.PageNumber ? 0 : Model.UserSummaries.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.UserSummaries, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

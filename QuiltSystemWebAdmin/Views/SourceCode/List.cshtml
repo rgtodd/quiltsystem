@@ -1,0 +1,35 @@
+﻿@model SourceCodeModel
+@{
+    ViewBag.Title = "Properties";
+    var heading = ModelMetadata<SourceCodePropertyModel>.Create(Context.RequestServices);
+}
+<div class="container-fluid">
+    @using (Html.ListBeginForm("ListSubmit", "SourceCode", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        for (int idx1 = 0; idx1 < Model.Types.Count; ++idx1)
+        {
+            <h3>@Html.DisplayFor(m => m.Types[idx1].TypeName)</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.PropertyName))</th>
+                        <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.DataType))</th>
+                        <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.DisplayName))</th>
+                        <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.DisplayFormatDataFormatString))</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int idx = 0; idx < Model.Types[idx1].Properties.Count; ++idx)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => m.Types[idx1].Properties[idx].PropertyName)</td>
+                            <td>@Html.DisplayFor(m => m.Types[idx1].Properties[idx].DataType)</td>
+                            <td>@Html.DisplayFor(m => m.Types[idx1].Properties[idx].DisplayName)</td>
+                            <td>@Html.DisplayFor(m => m.Types[idx1].Properties[idx].DisplayFormatDataFormatString)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>

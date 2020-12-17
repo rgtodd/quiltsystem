@@ -1,0 +1,86 @@
+﻿@model OrderDetailModel
+<div class="card-body">
+    <div class="row">
+        <div class="col-sm-12">
+            @if (Model.CanPay)
+            {
+                @Html.BootstrapActionLink("Pay", "Pay", "Order", new { id = Model.OrderId })
+            }
+            @if (Model.CanCancel)
+            {
+                @Html.BootstrapActionLink("Cancel", "Cancel", "Order", new { id = Model.OrderId })
+            }
+            @if (Model.CanReturn)
+            {
+                @Html.BootstrapActionLink("Return", "Index", "Return", new { id = Model.OrderId })
+            }
+            @Html.BootstrapActionLink("Send Message", "Create", "Message", new { orderId = Model.OrderId })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12"><label>Shipping Address</label></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">@Html.DisplayFor(m => m.ShippingName)</div>
+            </div>
+            @foreach (var line in Model.ShippingAddressLines)
+            {
+                <div class="row">
+                    <div class="col-sm-12">@Html.DisplayFor(m => line)</div>
+                </div>
+            }
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+    @using (Html.BootstrapBeginForm().ForDisplay().SetAlignRight(true))
+    {
+        @Html.BootstrapDisplay(m => m.ItemSubtotal)
+        @Html.BootstrapDisplay(m => m.Shipping)
+        @Html.BootstrapDisplay(m => m.Discount)
+        @Html.BootstrapDisplay(m => m.TaxableAmount)
+        @Html.BootstrapDisplay(m => m.SalesTax, "{0} (" + string.Format("{0:p}", Model.SalesTaxPercent) + ")")
+        @Html.BootstrapDisplay(m => m.Total)
+    }
+    @if (Is.Populated(Model.PendingItems))
+    {
+        <h4>Pending Items</h4>
+        foreach (var item in Model.PendingItems)
+        {
+            @await Html.PartialAsync("_OrderItem", item)
+        }
+    }
+</div>
+@foreach (var shipment in Model.Shipments)
+{
+    <div class="card-header bg-subtitle">
+        <div class="row">
+            <div class="col-sm-3">@Html.LabelFor(m => shipment.ShipmentDateTime, new { @class = "site-title" }) @Html.DisplayFor(m => shipment.ShipmentDateTime)</div>
+            <div class="col-sm-3">@Html.LabelFor(m => shipment.ShippingVendor, new { @class = "site-title" }) @Html.DisplayFor(m => shipment.ShippingVendor)</div>
+            <div class="col-sm-3">@Html.LabelFor(m => shipment.TrackingCode, new { @class = "site-title" }) @Html.DisplayFor(m => shipment.TrackingCode)</div>
+        </div>
+    </div>
+    <div class="card-body">
+        @foreach (var item in shipment.Items)
+        {
+            @await Html.PartialAsync("_OrderItem", item)
+
+        }
+    </div>
+}
+@foreach (var @return in Model.Returns)
+{
+    <div class="card-header bg-subtitle">
+        <div class="row">
+            <div class="col-sm-3">@Html.LabelFor(m => @return.ReturnDateTime, new { @class = "site-title" }) @Html.DisplayFor(m => @return.ReturnDateTime)</div>
+        </div>
+    </div>
+    <div class="card-body">
+        @foreach (var item in @return.Items)
+        {
+            @await Html.PartialAsync("_OrderItem", item)
+        }
+    </div>
+}

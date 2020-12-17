@@ -1,0 +1,33 @@
+﻿@model Notification
+@{
+    ViewBag.Title = "Notification " + Model.NotificationId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Notifications", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("DetailSubmit", "Notification", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-12">
+            @if (Model.AcknowledgementDateTime == null)
+            {
+                @Html.BootstrapSubmitButton("Acknowledge", Actions.Acknowledge)
+            }
+        </div>
+    </div>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.NotificationId)
+        @Html.BootstrapDisplay(m => m.NotificationType)
+        @Html.BootstrapDisplay(m => m.CreatedDateTime)
+        @Html.BootstrapDisplay(m => m.AcknowledgementDateTime)
+        @Html.BootstrapDisplay(m => m.UserId)
+        @Html.BootstrapDisplay(m => m.UserEmail)
+        @Html.BootstrapDisplay(m => m.OrderId)
+    }
+    @Html.HiddenFor(m => m.NotificationId)
+}

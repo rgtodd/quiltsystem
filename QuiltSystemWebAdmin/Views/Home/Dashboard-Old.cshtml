@@ -1,0 +1,295 @@
+﻿@model DashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+@Html.ActionLink("Debug", "Index", "Debug")
+
+<div class="card mt-3">
+    <div class="row no-gutters">
+        <div class="col-md-3">
+            <div class="card-body">
+                <h5>Application</h5>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card-body">
+                @Html.ActionLink("Designs", "Index", "Design", null, new { @class = "card-link" })
+                @Html.ActionLink("Projects", "Index", "Project", null, new { @class = "card-link" })
+                @Html.ActionLink("Orders", "Index", "Order", null, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                Application
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        @Html.ActionLink("Designs", "Index", "Design", htmlAttributes: new { @class = "align-middle" })
+        @Html.ActionLink("Projects", "Index", "Project")
+        @Html.ActionLink("Orders", "Index", "Order")
+    </div>
+</div>
+<h3>User Content</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Designs", "Index", "Design")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Designs</dt>
+                        <dd>@Model.ADashboard_Summary.MDesign_Dashboard.TotalDesigns</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Projects", "Index", "Project")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Projects</dt>
+                        <dd>@Model.ADashboard_Summary.MProject_Dashboard.TotalProjects</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Orders</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Orders", "Index", "Order")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Orders</dt>
+                        <dd>@Model.ADashboard_Summary.MOrder_Dashboard.TotalOrders</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Funding</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Fundables", "Index", "Fundable")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Fundables</dt>
+                        <dd>@Model.ADashboard_Summary.MFunding_Dashboard.TotalFundables</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Funders", "Index", "Funder")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Funders</dt>
+                        <dd>@Model.ADashboard_Summary.MFunding_Dashboard.TotalFunders</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Square Customers", "Index", "SquareCustomer")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Customers</dt>
+                        <dd>@Model.ADashboard_Summary.MSquare_Dashboard.TotalCustomers</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Square Payments", "Index", "SquarePayment")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Payments</dt>
+                        <dd>@Model.ADashboard_Summary.MSquare_Dashboard.TotalPayments</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Fulfillment</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Fulfillables", "Index", "Fulfillable")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Fulfillables</dt>
+                        <dd>@Model.ADashboard_Summary.MFulfillment_Dashboard.TotalFulfillables</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Shipment Requests", "Index", "ShipmentRequest")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Shipment Requests</dt>
+                        <dd>@Model.ADashboard_Summary.MFulfillment_Dashboard.TotalShipmentRequests</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Shipments", "Index", "Shipment")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Shipments</dt>
+                        <dd>@Model.ADashboard_Summary.MFulfillment_Dashboard.TotalShipments</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Return Requests", "Index", "ReturnRequest")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Return Requests</dt>
+                        <dd>@Model.ADashboard_Summary.MFulfillment_Dashboard.TotalReturnRequests</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Returns", "Index", "Return")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Returns</dt>
+                        <dd>@Model.ADashboard_Summary.MFulfillment_Dashboard.TotalReturns</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Communication</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Alerts", "Index", "Alert")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Alerts</dt>
+                        <dd>@Model.ADashboard_Summary.MCommunication_Dashboard.TotalAlerts</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Messages", "Index", "Message")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Messages</dt>
+                        <dd>@Model.ADashboard_Summary.MCommunication_Dashboard.TotalMessages</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Notifications", "Index", "Notification")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Notifications</dt>
+                        <dd>@Model.ADashboard_Summary.MCommunication_Dashboard.TotalNotifications</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Miscellaneous</h3>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Users", "Index", "User")</h5>
+                <p class="card-text">
+                    <dl>
+                        <dt>Total Users</dt>
+                        <dd>@Model.ADashboard_Summary.MUser_Dashboard.TotalUsers</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-md-4">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Debug", "Index", "Debug")</h5>
+                <p class="card-text">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3>Accounting</h3>
+<div class="row row-cols-1">
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("Ledger", "Index", "Ledger")</h5>
+                <table class="card-text">
+                    <tbody>
+                        @foreach (var dashboardItem in Model.ADashboard_Summary.MLedger_Dashboard.DashboardItems)
+                        {
+                            <tr>
+                                <td>@dashboardItem.AccountCode - @dashboardItem.AccountDescription</td>
+                                <td>@dashboardItem.DebitCreditCode</td>
+                                <td>@dashboardItem.Amount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

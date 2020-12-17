@@ -1,0 +1,97 @@
+﻿@model LedgerTransactionList
+@{
+    ViewBag.Title = "Ledger Transactions";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Ledger", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.PostDate)
+        @Html.BootstrapInput(m => m.Filter.LedgerAccountNumber, Model.Filter.LedgerAccountNumberList)
+        @Html.BootstrapInput(m => m.Filter.UnitOfWork)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="@Css.DetailTable">
+        <thead class="@Css.DetailTableHead">
+            <tr>
+                <th colspan="3">Debit</th>
+                <th colspan="3">Credit</th>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody class="@Css.DetailTableBody">
+            @{
+                foreach (var transaction in Model.Items)
+                {
+                    <tr class="@Css.DetailTableRowSublistHeading">
+                        <td colspan="3">
+                            Post Date: @Html.DisplayFor(m => transaction.PostDateTime)
+                        </td>
+                        <td colspan="3">
+                            Transaction Date: @Html.DisplayFor(m => transaction.TransactionDateTime)
+                        </td>
+                    </tr>
+                    <tr class="@Css.DetailTableRowSublistHeading">
+                        <td colspan="3">
+                            Unit of Work: @Html.ActionLink(transaction.UnitOfWork, "Index", "Transaction", new { unitOfWork = transaction.UnitOfWork })
+                        </td>
+                        <td colspan="3">
+                        </td>
+                    </tr>
+                    <tr class="@Css.DetailTableRowSublistHeading">
+                        <td colspan="6">
+                            @Html.DisplayFor(m => transaction.Description)
+                        </td>
+                    </tr>
+                    var maxIdx = Math.Max(transaction.DebitItems.Count, transaction.CreditItems.Count);
+                    for (int idx = 0; idx < maxIdx; ++idx)
+                    {
+                        <tr>
+                            @if (idx < transaction.DebitItems.Count)
+                            {
+                                var entry = transaction.DebitItems[idx];
+                                <td>@Html.DisplayFor(m => entry.LedgerAccountNumber)</td>
+                                <td>@Html.DisplayFor(m => entry.LedgerAccountName)</td>
+                                <td class="text-right">@Html.DisplayFor(m => entry.EntryAmount)</td>
+                            }
+                            else
+                            {
+                                <td colspan="3"></td>
+                            }
+                            @if (idx < transaction.CreditItems.Count)
+                            {
+                                var entry = transaction.CreditItems[idx];
+                                <td>@Html.DisplayFor(m => entry.LedgerAccountNumber)</td>
+                                <td>@Html.DisplayFor(m => entry.LedgerAccountName)</td>
+                                <td class="text-right">@Html.DisplayFor(m => entry.EntryAmount)</td>
+                            }
+                            else
+                            {
+                                <td colspan="3"></td>
+                            }
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

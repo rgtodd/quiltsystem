@@ -1,0 +1,54 @@
+﻿@model BlockList
+@{
+    ViewBag.Title = "Blocks";
+    var heading = ModelMetadata<BlockListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Block", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        <div class="form-group row">
+            <div class="@Html.ControlCssClasses()">
+                @for (var idx = 0; idx < Model.Filter.Tags.Count; ++idx)
+                {
+                    <input asp-for="Filter.Tags[idx].Selected" />
+                    <label asp-for="Filter.Tags[idx].Selected">@Model.Filter.Tags[idx].TagName</label>
+                    @Html.HiddenFor(m => m.Filter.Tags[idx].TagName)
+                }
+            </div>
+        </div>
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+            @Html.BootstrapSubmitButton("Create Blocks", Actions.Create)
+        }
+    }
+}
+<div class="row no-gutters">
+    @foreach (var item in Model.Items)
+    {
+        <div class="col-12 col-md-3 col-xl-1 mb-4">
+            <div class="card">
+                <img src="@Url.ActionLink("Block", "Thumbnail", new { id = item.BlockName, size = 75 })" class="card-img-top" />
+                @*<div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(m => item.BlockName)</h5>
+                    <div class="card-text">
+                        @foreach (var tag in item.Tags)
+                        {
+                            <span class="badge badge-primary">@tag</span>
+                        }
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    }
+</div>
+<div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+<div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>

@@ -1,0 +1,35 @@
+﻿@model Message
+@{
+    ViewBag.Title = "Message " + Model.MessageId;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ListActionLink("Messages", "Index", null)</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@*@Html.RenderAction("OrderSummary", "Widget", new { orderId = Model.OrderId });*@
+@using (Html.ListBeginForm("DetailSubmit", "Message", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @await Html.PartialAsync("_Message", Model);
+    <div class="row mt-3">
+        <div class="col-12">
+            @Html.BootstrapListActionLink("Return", "Index")
+            @Html.BootstrapSubmitButton("Reply", Actions.Reply)
+            @if (Model.EnableAcknowledge)
+            {
+                @Html.BootstrapSubmitButton("Acknowledge", Actions.Acknowledge)
+            }
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.MessageId)
+    if (Is.Populated(Model.Conversation))
+    {
+        <h5 class="mt-3">Conversation</h5>
+        foreach (var relatedMessage in Model.Conversation)
+        {
+            @await Html.PartialAsync("_Message", relatedMessage);
+        }
+    }
+}

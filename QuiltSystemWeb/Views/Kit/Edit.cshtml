@@ -1,0 +1,115 @@
+﻿@model KitEditModel
+@{
+    ViewBag.Title = "Edit Kit"; // Model.Detail.KitName;
+    ViewBag.ReturnUrl = Url.Action("Index", "Kit", new { id = "" });
+    ViewBag.ReloadUrl = Url.Action("Index", "Kit", new { id = Model.Detail.ProjectId, designId = Model.Detail.DesignId });
+}
+<div class="header">
+    <h5 class="header__title font-weight-bold">
+        @ViewBag.Title
+        &nbsp;&nbsp;
+        @Html.BootstrapButton("Done", "btnDone", true, false, dataUrl: (string)ViewBag.ReturnUrl)
+        @Html.BootstrapButton("Undo", "btnUndo", true, true, dataUrl: (string)ViewBag.ReloadUrl)
+        <span id="iconRefresh" class="glyphicon glyphicon-refresh design-container__toolbar-item-spin-icon" aria-hidden="true"></span>
+    </h5>
+</div>
+@using (Html.BeginForm("EditSubmit", "Kit", FormMethod.Post, new { @id = "frmMain" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BootstrapBeginForm().ForInput())
+            {
+                @* Size
+                *@
+                @Html.BootstrapInput(m => m.Specification.Size, Model.Specification.Sizes, controlClass: "kit_update")
+                @Html.BootstrapInput(m => m.Specification.CustomSizeWidth, dataField: "CustomWidth", fieldClass: "kit-size-custom", controlClass: "kit_defer_update")
+                @Html.BootstrapInput(m => m.Specification.CustomSizeHeight, dataField: "CustomHeight", fieldClass: "kit-size-custom", controlClass: "kit_defer_update")
+
+                @* Border
+                *@
+                @Html.BootstrapInput(m => m.Specification.BorderWidth, Model.Specification.BorderWidths, controlClass: "kit_update")
+                @Html.BootstrapInput(m => m.Specification.CustomBorderWidth, fieldClass: "kit-customBorderWidth", controlClass: "kit_defer_update")
+                <div class="row form-group kit-hasBorder">
+                    @Html.LabelFor(m => m.Specification.BorderFabricStyle, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        <div id="btnBorderColor" class="form-control" style="width: 50px; height: 25px; background-color: @Model.Specification.BorderFabricStyle.WebColor;">&nbsp;</div>
+                    </div>
+                </div>
+                @* Binding
+                *@
+                @Html.BootstrapInput(m => m.Specification.BindingWidth, Model.Specification.BindingWidths, controlClass: "kit_update")
+                @Html.BootstrapInput(m => m.Specification.CustomBindingWidth, fieldClass: "kit-customBindingWidth", controlClass: "kit_defer_update")
+                <div class="row form-group kit-hasBinding">
+                    @Html.LabelFor(m => m.Specification.BindingFabricStyle, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        <div id="btnBindingColor" class="form-control" style="width: 50px; height: 25px; background-color: @Model.Specification.BindingFabricStyle.WebColor;">&nbsp;</div>
+                    </div>
+                </div>
+
+                @*Backing
+                *@
+                @Html.BootstrapInput(m => m.Specification.HasBacking, controlClass: "kit_update")
+                <div class="row form-group kit-hasBacking">
+                    @Html.LabelFor(m => m.Specification.BackingFabricStyle, new { @class = "col-sm-3 control-label" })
+                    <div class="col-sm-9">
+                        <div id="btnBackingColor" class="form-control" style="width: 50px; height: 25px; background-color: @Model.Specification.BackingFabricStyle.WebColor;">&nbsp;</div>
+                    </div>
+                </div>
+
+                @* Options
+                *@
+                @Html.BootstrapInput(m => m.Specification.TrimTriangles, controlClass: "kit_update")
+            }
+        </div>
+        <div class="col-md-6">
+            <img id="imgPreview" src="data:image;base64,@Convert.ToBase64String(Model.Detail.KitImage)">
+        </div>
+    </div>
+    @await Html.PartialAsync("_KitInstructions", Model.Detail, new ViewDataDictionary(ViewData) { { "edit", true } })
+    <div id="dlgSelectColor" class="dialog color-list" title="Select Color">
+        <div id="divColorsHeader" class="form-inline">
+            <label class="form-control-static">Manufacturer:</label>
+            <select id="selectManufacturer" class="form-control"></select>
+            <label class="form-control-static">Collection:</label>
+            <select id="selectCollection" class="form-control"></select>
+        </div>
+        <div id="divColorsBody"></div>
+    </div>
+    @Html.HiddenFor(m => m.JsonError)
+    @Html.HiddenFor(m => m.Detail.ProjectId)
+    @Html.HiddenFor(m => m.Detail.DesignId)
+    @Html.HiddenFor(m => m.Specification.BorderFabricStyle.Sku)
+    @Html.HiddenFor(m => m.Specification.BindingFabricStyle.Sku)
+    @Html.HiddenFor(m => m.Specification.BackingFabricStyle.Sku)
+}
+@section styles {
+}
+@section scripts {
+    <script type="text/javascript">
+
+        $("#dlgSelectColor").dialog({
+            autoOpen: false,
+            closeText: "",
+            modal: true,
+            width: 600,
+            height: 400,
+            buttons: [
+                {
+                    text: "Cancel",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                    // Uncommenting the following line would hide the text,
+                    // resulting in the label being used as a tooltip
+                    //showText: false
+                }
+            ]
+        });
+
+        $(function () {
+            colorList_initialize();
+            kit_initialize();
+        });
+
+    </script>
+}

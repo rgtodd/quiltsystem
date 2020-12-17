@@ -1,0 +1,13 @@
+﻿.color-dialog {
+}
+
+.color-dialog__item {
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: 2px solid white;
+}
+
+.color-dialog__item--hover {
+    border-color: red;
+}

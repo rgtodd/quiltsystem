@@ -1,0 +1,28 @@
+﻿@model OrderDetailModel
+
+<div class="card">
+    <div class="card-header text-white bg-primary">
+        <div class="row">
+            @if (Model.Collapsable)
+            {
+                <div class="col-sm-1" style="padding-top: 5px;">
+                    <button type="button" id="@Model.OrderId" class="btn btn-primary btn-order material-icons expand-more site-toggle"></button>
+                </div>
+            }
+            <div class="col-sm-2">@Html.LabelFor(m => m.OrderNumber, new { @class = "site-title" }) @Html.DisplayFor(m => m.OrderNumber)</div>
+            <div class="col-sm-2">@Html.LabelFor(m => m.SubmissionDateTime, new { @class = "site-title" }) @Html.DisplayFor(m => m.SubmissionDateTime)</div>
+            <div class="col-sm-2">@Html.LabelFor(m => m.OrderStatus, new { @class = "site-title" }) @Html.DisplayFor(m => m.OrderStatus)</div>
+            <div class="col-sm-2">@Html.LabelFor(m => m.Total, new { @class = "site-title" }) @Html.DisplayFor(m => m.Total)</div>
+        </div>
+    </div>
+    @if (Model.Collapsable)
+    {
+        <div class="collapse">
+            @await Html.PartialAsync("_OrderBody", Model)
+        </div>
+    }
+    else
+    {
+        @await Html.PartialAsync("_OrderBody", Model)
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@model OrderList
+@{
+    ViewBag.Title = "Orders";
+    var heading = ModelMetadata<OrderListItem>.Create(Context.RequestServices);
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("ListSubmit", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter.OrderNumber)
+        @Html.BootstrapInput(m => m.Filter.OrderDate)
+        @Html.BootstrapInput(m => m.Filter.UserName)
+        @Html.BootstrapInput(m => m.Filter.OrderStatus, Model.Filter.OrderStatusList)
+        @Html.BootstrapInput(m => m.Filter.RecordCount, Model.Filter.RecordCountList)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.UserName))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.OrderNumber))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Total))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.OrderStatusType))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.OrderDateTime))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: item.OrderId)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.UserName)</td>
+                    <td>@Html.DisplayFor(m => item.OrderNumber)</td>
+                    <td>@Html.DisplayFor(m => item.Total)</td>
+                    <td>@Html.DisplayFor(m => item.OrderStatusType)</td>
+                    <td>@Html.DisplayFor(m => item.OrderDateTime)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.Items.PageCount < Model.Items.PageNumber ? 0 : Model.Items.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.Items, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

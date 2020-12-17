@@ -1,0 +1,15 @@
+﻿.kit {
+}
+
+.kit__step {
+    border-top: 1px solid black;
+    margin-top: 15px;
+    page-break-inside: avoid;
+}
+
+.kit__step-header {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
