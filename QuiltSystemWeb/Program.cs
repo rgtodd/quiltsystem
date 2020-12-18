@@ -34,7 +34,7 @@ namespace RichTodd.QuiltSystem.Web
 
                     // Enable logging data to be transmitted to Application Insights.
                     //
-                    _ = logging.AddApplicationInsights();
+                    //_ = logging.AddApplicationInsights();
                 });
             _ = hostBuilder.ConfigureServices(services =>
                 {

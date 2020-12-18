@@ -1,4 +1,4 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@*@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +25,7 @@
     <link href="~/app/css/quilt.tooltray.css" rel="stylesheet" />
     <link href="~/app/css/MaterialIcons.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
-    @Html.Raw(JavaScriptSnippet.FullScript)
+    @*@Html.Raw(JavaScriptSnippet.FullScript)*@
 </head>
 <body>
     <nav class="header navbar navbar-expand-md fixed-top navbar-dark bg-primary">

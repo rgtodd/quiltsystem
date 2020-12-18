@@ -63,7 +63,7 @@ namespace RichTodd.QuiltSystem
 
                   // Enable logging data to be transmitted to Application Insights.
                   //
-                  _ = logging.AddApplicationInsights();
+                  //_ = logging.AddApplicationInsights();
               });
 
             _ = hostBuilder.ConfigureServices(services =>
@@ -90,7 +90,7 @@ namespace RichTodd.QuiltSystem
                         .AddMicroServices(options => options.ExcludeUserManagement())
                         .AddMicroEventServices();
 
-                    _ = services.AddApplicationInsightsTelemetryWorkerService();
+                    //_ = services.AddApplicationInsightsTelemetryWorkerService();
                 });
 
             var host = hostBuilder.Build();

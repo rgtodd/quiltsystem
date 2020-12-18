@@ -1,0 +1,50 @@
+﻿@model LogEntryListModel
+@{
+    ViewBag.Title = "Logs";
+    var heading = ModelMetadata<LogEntryModel>.Create(Context.RequestServices);
+}
+@using (Html.ListBeginForm("ListSubmit", "Log", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.Filter, Model.Filters)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Refresh", Actions.Refresh)
+            @Html.BootstrapSubmitButton("Process", Actions.Process)
+        }
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.LogEntryId))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.LogEntryDateTime))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.LogEntryTypeName))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.LogName))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.SeverityCode))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.DurationMilliseconds))</th>
+                <th>@Html.ListHeadingActionLink(heading.GetDisplayName(m => m.Message))</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in Model.LogEntries)
+            {
+                <tr>
+                    <td>
+                        @Html.BootstrapListActionLink("Detail", "Index", id: entry.LogEntryId)
+                    </td>
+                    <td>@Html.DisplayFor(m => entry.LogEntryId)</td>
+                    <td>@Html.DisplayFor(m => entry.LogEntryDateTime)</td>
+                    <td>@Html.DisplayFor(m => entry.LogEntryTypeName)</td>
+                    <td>@Html.DisplayFor(m => entry.LogName)</td>
+                    <td>@Html.DisplayFor(m => entry.SeverityCode)</td>
+                    <td>@Html.DisplayFor(m => entry.DurationMilliseconds)</td>
+                    <td>@Html.DisplayFor(m => entry.Message)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>Page @(Model.LogEntries.PageCount < Model.LogEntries.PageNumber ? 0 : Model.LogEntries.PageNumber)</div>
+    <div>@Html.PagedListPager(Model.LogEntries, page => Html.ListActionUrl("Index", page), BootstrapPaging.Options)</div>
+}

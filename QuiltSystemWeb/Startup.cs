@@ -4,8 +4,6 @@
 //
 using System;
 
-using Microsoft.ApplicationInsights.DependencyCollector;
-using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -97,20 +95,21 @@ namespace RichTodd.QuiltSystem.Web
 
             // Register Application Insights services.
             //
-            _ = services
-                .AddApplicationInsightsTelemetry()
-                .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, options) => module.EnableSqlCommandTextInstrumentation = true);
+            //_ = services
+            //    .AddApplicationInsightsTelemetry()
+            //    .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, options) => module.EnableSqlCommandTextInstrumentation = true);
         }
 
         // Configure the application request pipeline.
         //
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TelemetryConfiguration telemetryConfiguration)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TelemetryConfiguration telemetryConfiguration)
         {
             if (env.IsDevelopment())
             {
                 _ = app.UseDeveloperExceptionPage();
 
-                telemetryConfiguration.DisableTelemetry = true;
+                //telemetryConfiguration.DisableTelemetry = true;
 
                 //_ = app.UseDatabaseErrorPage();
             }
