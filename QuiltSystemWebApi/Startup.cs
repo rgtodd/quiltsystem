@@ -2,7 +2,6 @@
 // Copyright (c) 2019-2020 by Richard G. Todd
 // Source code is licensed under the MIT License.  See the LICENSE.txt solution file for more information.
 //
-using Microsoft.ApplicationInsights.DependencyCollector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -55,9 +54,9 @@ namespace RichTodd.QuiltSystem.WebApi
 
             // Register Application Insights services.
             //
-            _ = services
-                .AddApplicationInsightsTelemetry()
-                .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, options) => module.EnableSqlCommandTextInstrumentation = true);
+            //_ = services
+            //    .AddApplicationInsightsTelemetry()
+            //    .ConfigureTelemetryModule<DependencyTrackingTelemetryModule>((module, options) => module.EnableSqlCommandTextInstrumentation = true);
         }
 
         // Configure the application request pipeline.

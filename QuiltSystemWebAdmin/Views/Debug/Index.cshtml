@@ -1,0 +1,32 @@
+﻿@model DebugModel
+@{
+    ViewBag.Title = "Debug";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item active" aria-current="page"><strong>@ViewBag.Title</strong></li>
+    </ol>
+</nav>
+@using (Html.ListBeginForm("IndexSubmit", "Debug", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <h3>Options</h3>
+    using (Html.BootstrapBeginForm().ForDisplay())
+    {
+        @Html.BootstrapDisplay(m => m.DatabaseOptions.UseLocalDatabase)
+        @Html.BootstrapDisplay(m => m.DatabaseOptions.UseMostRecentDatabase)
+        @Html.BootstrapDisplay(m => m.DatabaseOptions.LocalDatabaseName)
+        @Html.BootstrapDisplay(m => m.DatabaseOptions.LocalConnectionString)
+        @Html.BootstrapDisplay(m => m.DatabaseOptions.DatabaseLoggingEnabled)
+        @Html.BootstrapDisplay(m => m.ApplicationOptions.DeferJobProcessing)
+    }
+    <h3>Operations</h3>
+    using (Html.BootstrapBeginForm().ForInput())
+    {
+        @Html.BootstrapInput(m => m.SquareWebookTransactionId)
+        using (Html.BootstrapBeginFormButtonRow())
+        {
+            @Html.BootstrapSubmitButton("Execute", Actions.Process)
+        }
+    }
+}

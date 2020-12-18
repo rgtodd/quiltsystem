@@ -2,22 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-QuiltAGoGoWeb-A5A01117-C632-4FA8-9034-DD153ED2A8F7</UserSecretsId>
     <AssemblyName>RichTodd.QuiltSystem.Web</AssemblyName>
     <RootNamespace>RichTodd.QuiltSystem.Web</RootNamespace>
     <EnableMSDeployAppOffline>true</EnableMSDeployAppOffline>
-    <ApplicationInsightsResourceId>/subscriptions/93f048ef-38d2-4032-8a03-034acb08d008/resourcegroups/QuiltAGoGo/providers/microsoft.insights/components/QuiltAGoGoAI</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\**" />
-    <Content Remove="Data\**" />
-    <EmbeddedResource Remove="Data\**" />
-    <None Remove="Data\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
@@ -31,11 +21,5 @@
     <ProjectReference Include="..\QuiltSystemServiceWeb\QuiltSystemServiceWeb.csproj" />
     <ProjectReference Include="..\QuiltSystemService\QuiltSystemService.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services" />
-  </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1production_1json__JsonSchema="http://json.schemastore.org/appsettings" appsettings_1development_1json__JsonSchema="http://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
 
 </Project>
