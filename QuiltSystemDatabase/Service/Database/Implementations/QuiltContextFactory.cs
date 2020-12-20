@@ -64,7 +64,7 @@ namespace RichTodd.QuiltSystem.Service.Database.Implementations
             {
                 return Options.UseLocalDatabase
                     ? Options.LocalConnectionString
-                    : Configuration.GetConnectionString("QuiltAGoGo"); // HACK
+                    : Configuration.GetConnectionString("QuiltDatabase");
             }
         }
 

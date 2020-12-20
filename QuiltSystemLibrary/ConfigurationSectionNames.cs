@@ -6,6 +6,6 @@ namespace RichTodd.QuiltSystem
 {
     public static class ConfigurationSectionNames
     {
-        public const string Application = "QuiltAGoGo";
+        public const string Application = "QuiltSystem";
     }
 }
