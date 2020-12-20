@@ -152,13 +152,6 @@ namespace RichTodd.QuiltSystem.Business.Operation
 
         protected void OnNotificationCreated(QuiltContext ctx, Notification dbNotification)
         {
-            //var body = dbNotification.NotificationType.Body;
-            //if (dbNotification.OrderId.HasValue)
-            //{
-            //    var url = "https://quiltagogo.azurewebsites.net/Order/Index/" + dbNotification.OrderId.Value.ToString();
-            //    body = body.Replace("%ORDER%", url);
-            //}
-
             var dbNotificationType = ctx.NotificationTypes.Find(dbNotification.NotificationTypeCode);
 
             var formatter = new NotificationEmailFormatter(dbNotificationType.Subject);

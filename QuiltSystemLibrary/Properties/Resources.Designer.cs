@@ -323,7 +323,7 @@ namespace RichTodd.QuiltSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your recent order at quiltagogo.com has shipped.
+        ///   Looks up a localized string similar to Your recent order at $URL$ has shipped.
         ///
         ///You can view this order and tracking information using the following link:
         ///
@@ -331,7 +331,7 @@ namespace RichTodd.QuiltSystem.Properties {
         ///
         ///We appreciate your business.
         ///
-        ///QuiltAGoGo.com
+        ///$WEBSITE-NAME$
         ///
         ///This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message..
         /// </summary>
@@ -342,7 +342,7 @@ namespace RichTodd.QuiltSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your recent order at quiltagogo.com is being prepared for shipment.  We will send you another notification when the order has been shipped.
+        ///   Looks up a localized string similar to Your recent order at $URL$ is being prepared for shipment.  We will send you another notification when the order has been shipped.
         ///
         ///You can view this order using the following link:
         ///
@@ -350,7 +350,7 @@ namespace RichTodd.QuiltSystem.Properties {
         ///
         ///We appreciate your business.
         ///
-        ///QuiltAGoGo.com
+        ///$WEBSITE-NAME$
         ///
         ///This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message..
         /// </summary>
@@ -361,7 +361,7 @@ namespace RichTodd.QuiltSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A refund has been issued for your order at quiltagogo.com.
+        ///   Looks up a localized string similar to A refund has been issued for your order at $URL$.
         ///
         ///You can view this order using the following link:
         ///
@@ -369,7 +369,7 @@ namespace RichTodd.QuiltSystem.Properties {
         ///
         ///We appreciate your business.
         ///
-        ///QuiltAGoGo.com
+        ///$WEBSITE-NAME$
         ///
         ///This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message..
         /// </summary>

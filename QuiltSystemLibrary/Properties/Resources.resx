@@ -317,7 +317,7 @@ For questions about this e-mail, please contact $SUPPORT-EMAIL$.</value>
     <value>ModelCreateViews.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="OrderShippedNotification" xml:space="preserve">
-    <value>Your recent order at quiltagogo.com has shipped.
+    <value>Your recent order at $URL$ has shipped.
 
 You can view this order and tracking information using the following link:
 
@@ -325,12 +325,12 @@ You can view this order and tracking information using the following link:
 
 We appreciate your business.
 
-QuiltAGoGo.com
+$WEBSITE-NAME$
 
 This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
   </data>
   <data name="OrderShippingNotification" xml:space="preserve">
-    <value>Your recent order at quiltagogo.com is being prepared for shipment.  We will send you another notification when the order has been shipped.
+    <value>Your recent order at $URL$ is being prepared for shipment.  We will send you another notification when the order has been shipped.
 
 You can view this order using the following link:
 
@@ -338,12 +338,12 @@ You can view this order using the following link:
 
 We appreciate your business.
 
-QuiltAGoGo.com
+$WEBSITE-NAME$
 
 This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
   </data>
   <data name="RefundIssuedNotification" xml:space="preserve">
-    <value>A refund has been issued for your order at quiltagogo.com.
+    <value>A refund has been issued for your order at $URL$.
 
 You can view this order using the following link:
 
@@ -351,7 +351,7 @@ You can view this order using the following link:
 
 We appreciate your business.
 
-QuiltAGoGo.com
+$WEBSITE-NAME$
 
 This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</value>
   </data>

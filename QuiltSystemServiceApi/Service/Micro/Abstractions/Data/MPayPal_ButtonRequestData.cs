@@ -29,22 +29,15 @@ namespace RichTodd.QuiltSystem.Service.Micro.Abstractions.Data
         public string State { get; set; } // state
         public string Zip { get; set; } // zip
 
-        //public string Business { get; set; } // business
-        //public string CustomerEmailId { get; set; }
-        //public string CustomerMerchantId { get; set; }
-
         public static MPayPal_ButtonRequestData CreateDefault()
         {
             return new MPayPal_ButtonRequestData()
             {
                 ApiUrl = "https://api-3t.sandbox.paypal.com/nvp",
-                ApiUserName = "paypalcommerce-facilitator_api1.richtodd.com",
-                ApiPassword = "KGB654SP8QU22WUJ",
-                ApiSignature = "AFcWxV21C7fd0v3bYYYRCpSSRl31A62rcMwKSgSpMDQH38z73.RqiD0W",
-                //CustomerEmailId = @"paypalcommerce-facilitator@richtodd.com",
-                //CustomerMerchantId = "M9E4NZ6QMDWYG",
+                ApiUserName = "*SECRET*",
+                ApiPassword = "*SECRET*",
+                ApiSignature = "*SECRET*",
                 CountryCode = "US",
-                //Business = "paypalcommerce-facilitator@richtodd.com",
                 Return = "https://quiltagogo.azurewebsites.net/Cart/PayComplete",
                 CancelReturn = "https://quiltagogo.azurewebsites.net/Cart/PayCancel"
             };
